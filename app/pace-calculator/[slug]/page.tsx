@@ -3,6 +3,7 @@ import Link from "next/link";
 import CalculatorClient from "@/components/CalculatorClient";
 import PageShell from "@/components/PageShell";
 import { ALL_COMBOS, getComboBySlug } from "@/lib/combos";
+import { generateContextParagraph } from "@/lib/context-copy";
 import { getDistanceTheme } from "@/lib/distance-theme";
 import { calculatePace } from "@/lib/vdot";
 
@@ -65,6 +66,11 @@ export default function PaceCalculatorPage({ params }: PageProps) {
     combo.distance.distanceKm,
     combo.goalTimeSeconds
   );
+  const contextParagraphs = generateContextParagraph(
+    combo.distance,
+    combo.goalTimeSeconds,
+    initialPace.pacePerKmSeconds
+  );
 
   return (
     <PageShell>
@@ -83,6 +89,7 @@ export default function PaceCalculatorPage({ params }: PageProps) {
         combo={combo}
         initialPace={initialPace}
         theme={theme}
+        contextParagraphs={contextParagraphs}
       />
     </PageShell>
   );

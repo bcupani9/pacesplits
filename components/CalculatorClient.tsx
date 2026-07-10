@@ -17,12 +17,14 @@ interface CalculatorClientProps {
   combo: Combo;
   initialPace: PaceResult;
   theme: DistanceTheme;
+  contextParagraphs?: string[];
 }
 
 export default function CalculatorClient({
   combo,
   initialPace,
   theme,
+  contextParagraphs,
 }: CalculatorClientProps) {
   const [strategy, setStrategy] = useState<PacingStrategy>("even");
   const [negativeSplitPercent, setNegativeSplitPercent] = useState(4);
@@ -114,7 +116,13 @@ export default function CalculatorClient({
         <PaceTable splits={pace.splits} showVariablePace={isNegative} />
       </div>
 
-      <CTAWaitlist />
+      {contextParagraphs && contextParagraphs.length > 0 && (
+        <p className="mt-5 px-1 text-[15px] leading-[1.65] text-white/55">
+          {contextParagraphs.join(" ")}
+        </p>
+      )}
+
+      <CTAWaitlist className="mt-8 sm:mt-10" />
     </>
   );
 }

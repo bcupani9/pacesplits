@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import FloatingNav from "@/components/FloatingNav";
 import { BRAND_NAME } from "@/lib/brand";
 import "./globals.css";
@@ -12,7 +13,7 @@ const inter = Inter({
 });
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://pacesplits-app.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://pacesplits.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -72,6 +73,7 @@ export default function RootLayout({
             </div>
           </footer>
         </div>
+        <Analytics />
       </body>
     </html>
   );
