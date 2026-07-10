@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import CTAWaitlist from "@/components/CTAWaitlist";
-import PaceTable from "@/components/PaceTable";
+import CalculatorClient from "@/components/CalculatorClient";
+import PageShell from "@/components/PageShell";
 import { ALL_COMBOS, getComboBySlug } from "@/lib/combos";
-import { calculatePace, formatPace } from "@/lib/vdot";
+import { getDistanceTheme } from "@/lib/distance-theme";
+import { calculatePace } from "@/lib/vdot";
 
 interface PageProps {
   params: { slug: string };
@@ -40,55 +41,49 @@ export default function PaceCalculatorPage({ params }: PageProps) {
 
   if (!combo) {
     return (
-      <div className="text-center">
-        <h1 className="text-2xl font-bold text-gray-900">
-          Calculator not found
-        </h1>
-        <p className="mt-2 text-gray-600">
-          We couldn&apos;t find a pace calculator for that goal time.
-        </p>
-        <Link
-          href="/"
-          className="mt-6 inline-block text-emerald-700 hover:underline"
-        >
-          Browse all calculators
-        </Link>
-      </div>
+      <PageShell>
+        <div className="card-dark px-5 py-10 text-center sm:px-8">
+          <h1 className="text-[22px] font-semibold text-white">
+            Calculator not found
+          </h1>
+          <p className="mt-2 text-[15px] text-white/55">
+            We couldn&apos;t find a pace calculator for that goal time.
+          </p>
+          <Link
+            href="/calculators"
+            className="focus-ring-dark mt-6 inline-block text-[15px] font-medium text-[#6b9fff]"
+          >
+            ‹ All calculators
+          </Link>
+        </div>
+      </PageShell>
     );
   }
 
-  const pace = calculatePace(combo.distance.distanceKm, combo.goalTimeSeconds);
-  const pacePerMile = formatPace(pace.pacePerMileSeconds);
-  const pacePerKm = formatPace(pace.pacePerKmSeconds);
+  const theme = getDistanceTheme(combo.distance.id);
+  const initialPace = calculatePace(
+    combo.distance.distanceKm,
+    combo.goalTimeSeconds
+  );
 
   return (
-    <article>
-      <nav className="mb-6 text-sm text-gray-500">
-        <Link href="/" className="hover:text-gray-700">
-          Home
-        </Link>
-        <span className="mx-2">/</span>
-        <span className="text-gray-700">{combo.distance.name}</span>
-      </nav>
+    <PageShell>
+      <Link
+        href="/calculators"
+        className="focus-ring-dark mb-5 inline-block text-[15px] text-white/50 transition-colors duration-150 ease-in-out hover:text-white/80"
+      >
+        ‹ All calculators
+      </Link>
 
-      <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+      <h1 className="sr-only">
         {combo.distance.name} Pace Calculator: {combo.goalLabel}
       </h1>
 
-      <p className="mt-4 text-base text-gray-600 sm:text-lg">
-        To finish a {combo.distance.name.toLowerCase()} in{" "}
-        {combo.goalLabelLong}, you need to run{" "}
-        <strong className="font-semibold text-gray-900">{pacePerMile}</strong>{" "}
-        per mile ({pacePerKm} per km) at an even pace.
-      </p>
-
-      <h2 className="mb-4 mt-10 text-xl font-semibold text-gray-900">
-        Mile-by-mile splits
-      </h2>
-
-      <PaceTable splits={pace.splits} />
-
-      <CTAWaitlist />
-    </article>
+      <CalculatorClient
+        combo={combo}
+        initialPace={initialPace}
+        theme={theme}
+      />
+    </PageShell>
   );
 }

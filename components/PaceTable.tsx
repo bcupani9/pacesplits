@@ -2,50 +2,69 @@ import { Split, formatDuration, formatPace } from "@/lib/vdot";
 
 interface PaceTableProps {
   splits: Split[];
+  limit?: number;
+  embedded?: boolean;
+  showVariablePace?: boolean;
 }
 
-export default function PaceTable({ splits }: PaceTableProps) {
+export default function PaceTable({
+  splits,
+  limit,
+  embedded = false,
+  showVariablePace = false,
+}: PaceTableProps) {
+  const visibleSplits = limit ? splits.slice(0, limit) : splits;
+  const wrapperClass = embedded
+    ? "overflow-hidden"
+    : "card-dark overflow-hidden";
+
+  const rowBorder = "border-[var(--border-dark)]";
+  const labelClass = "text-[15px] text-white/50";
+  const paceClass = "text-[13px] tabular-nums text-white/40";
+  const cumulativeClass =
+    "min-w-[4.5rem] text-right text-[15px] font-semibold tabular-nums text-white";
+  const variablePaceClass = "text-[11px] tabular-nums text-white/35";
+  const footerClass =
+    "border-t border-[var(--border-dark)] bg-white/5 px-5 py-3 text-center text-[13px] text-white/45";
+
   return (
-    <div className="overflow-x-auto rounded-lg border border-gray-200">
-      <table className="min-w-full divide-y divide-gray-200 text-sm">
-        <thead className="bg-gray-50">
-          <tr>
-            <th
-              scope="col"
-              className="px-4 py-3 text-left font-semibold text-gray-700"
-            >
-              Marker
-            </th>
-            <th
-              scope="col"
-              className="px-4 py-3 text-right font-semibold text-gray-700"
-            >
-              Split
-            </th>
-            <th
-              scope="col"
-              className="px-4 py-3 text-right font-semibold text-gray-700"
-            >
-              Cumulative
-            </th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-gray-100 bg-white">
-          {splits.map((split) => (
-            <tr key={split.mile} className="hover:bg-gray-50">
-              <td className="px-4 py-2.5 font-medium text-gray-900">
-                {split.label}
-              </td>
-              <td className="px-4 py-2.5 text-right tabular-nums text-gray-700">
-                {formatPace(split.splitTimeSeconds)}
-              </td>
-              <td className="px-4 py-2.5 text-right tabular-nums text-gray-900">
-                {formatDuration(split.cumulativeTimeSeconds)}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className={wrapperClass}>
+      <ul>
+        {visibleSplits.map((split, index) => (
+          <li
+            key={split.mile}
+            className={
+              index < visibleSplits.length - 1
+                ? `border-b ${rowBorder}`
+                : undefined
+            }
+          >
+            <div className="flex items-center justify-between gap-4 px-4 py-3.5 sm:px-5">
+              <span className={labelClass}>{split.label}</span>
+              <div className="flex flex-col items-end gap-0.5">
+                <div className="flex items-baseline gap-4">
+                  <span className={paceClass}>
+                    {formatPace(split.splitTimeSeconds)}
+                  </span>
+                  <span className={cumulativeClass}>
+                    {formatDuration(split.cumulativeTimeSeconds)}
+                  </span>
+                </div>
+                {showVariablePace && split.paceThisMile !== undefined && (
+                  <span className={variablePaceClass}>
+                    this mile: {formatPace(split.paceThisMile)}
+                  </span>
+                )}
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+      {limit && splits.length > limit && (
+        <div className={footerClass}>
+          +{splits.length - limit} more miles
+        </div>
+      )}
     </div>
   );
 }

@@ -143,3 +143,58 @@ export function groupCombosByDistance(): Map<DistanceId, Combo[]> {
 export function getDistanceDisplayName(id: DistanceId): string {
   return DISTANCES.find((d) => d.id === id)!.name;
 }
+
+const FEATURED_GOAL_SECONDS: Record<DistanceId, number[]> = {
+  "5k": [
+    15 * 60,
+    18 * 60,
+    20 * 60,
+    22 * 60,
+    24 * 60,
+    25 * 60,
+    28 * 60,
+    30 * 60,
+  ],
+  "10k": [
+    35 * 60,
+    40 * 60,
+    42 * 60,
+    45 * 60,
+    50 * 60,
+    52 * 60,
+    55 * 60,
+    60 * 60,
+  ],
+  "half-marathon": [
+    75 * 60,
+    85 * 60,
+    95 * 60,
+    105 * 60,
+    115 * 60,
+    125 * 60,
+    135 * 60,
+    165 * 60,
+  ],
+  marathon: [
+    165 * 60,
+    180 * 60,
+    195 * 60,
+    210 * 60,
+    225 * 60,
+    240 * 60,
+    270 * 60,
+    300 * 60,
+  ],
+};
+
+export function getFeaturedGoalTimes(distanceId: DistanceId): Combo[] {
+  return FEATURED_GOAL_SECONDS[distanceId]
+    .map((seconds) =>
+      ALL_COMBOS.find(
+        (combo) =>
+          combo.distance.id === distanceId &&
+          combo.goalTimeSeconds === seconds
+      )
+    )
+    .filter((combo): combo is Combo => combo !== undefined);
+}

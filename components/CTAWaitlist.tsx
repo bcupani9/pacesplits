@@ -2,11 +2,11 @@ const WAITLIST_URL = "https://example.com/waitlist";
 
 export default function CTAWaitlist() {
   return (
-    <aside className="mt-10 rounded-xl border border-emerald-200 bg-emerald-50 p-6 sm:p-8">
-      <h2 className="text-lg font-semibold text-gray-900 sm:text-xl">
+    <aside className="card-dark mt-5 p-5 sm:mt-6 sm:p-6">
+      <h2 className="text-[17px] font-semibold text-white sm:text-[19px]">
         Want a full training plan built around this pace?
       </h2>
-      <p className="mt-2 text-sm text-gray-600 sm:text-base">
+      <p className="mt-2 text-[15px] leading-relaxed text-white/55">
         Join the waitlist for personalized workouts, weekly mileage, and race-day
         strategy tailored to your goal time.
       </p>
@@ -14,7 +14,7 @@ export default function CTAWaitlist() {
         href={WAITLIST_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-5 inline-flex items-center justify-center rounded-lg bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-emerald-700"
+        className="btn-brand focus-ring-dark mt-5 px-6 py-3.5 text-[15px] sm:text-[16px]"
       >
         Join the waitlist
       </a>
