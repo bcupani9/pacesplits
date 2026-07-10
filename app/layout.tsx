@@ -12,7 +12,7 @@ const inter = Inter({
 });
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://pacesplits.com";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://pacesplits-app.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: `%s | ${BRAND_NAME}`,
   },
   description:
-    "Free running pace calculators with mile-by-mile splits for 5K, 10K, half marathon, and marathon goal times.",
+    "Free running pace calculators with mile-by-mile splits for 5K, 10K, half marathon, and marathon goal times. Join the PaceSplits app waitlist for personalized training plans.",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -29,13 +29,13 @@ export const metadata: Metadata = {
     siteName: BRAND_NAME,
     title: `${BRAND_NAME} — Running Pace Calculators`,
     description:
-      "Free running pace calculators with mile-by-mile splits for every race distance and goal time.",
+      "Free running pace calculators with mile-by-mile splits for every race distance and goal time. Join the PaceSplits app waitlist for personalized training plans.",
   },
   twitter: {
     card: "summary_large_image",
     title: `${BRAND_NAME} — Running Pace Calculators`,
     description:
-      "Free running pace calculators with mile-by-mile splits for every race distance and goal time.",
+      "Free running pace calculators with mile-by-mile splits for every race distance and goal time. Join the PaceSplits app waitlist for personalized training plans.",
   },
 };
 
@@ -56,7 +56,17 @@ export default function RootLayout({
 
           <footer className="relative border-t border-white/10">
             <div className="mx-auto max-w-3xl px-4 py-5 sm:px-6">
-              <p className="text-[13px] text-white/40">
+              <p className="text-[13px] text-white/50">
+                The {BRAND_NAME} app — training plans built around your race pace
+                — is coming soon.{" "}
+                <a
+                  href="/#waitlist"
+                  className="focus-ring-dark text-[#6b9fff] transition-colors duration-150 hover:text-[#8bb3ff]"
+                >
+                  Join the waitlist
+                </a>
+              </p>
+              <p className="mt-2 text-[13px] text-white/40">
                 © {new Date().getFullYear()} {BRAND_NAME}
               </p>
             </div>

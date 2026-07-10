@@ -1,5 +1,7 @@
+import CTAWaitlist from "@/components/CTAWaitlist";
 import DistanceSection from "@/components/DistanceSection";
 import PageShell from "@/components/PageShell";
+import { BRAND_NAME } from "@/lib/brand";
 import {
   ALL_COMBOS,
   DISTANCES,
@@ -10,7 +12,7 @@ import {
 export const metadata = {
   title: "Calculators",
   description:
-    "Browse pace calculators for 5K, 10K, half marathon, and marathon goal times.",
+    "Browse free pace calculators for 5K, 10K, half marathon, and marathon goal times. Join the PaceSplits app waitlist for training plans built around your race pace.",
 };
 
 export default function CalculatorsPage() {
@@ -24,7 +26,8 @@ export default function CalculatorsPage() {
         </h1>
         <p className="mt-3 max-w-lg text-[16px] leading-relaxed text-white/60 sm:text-[17px]">
           Pick a distance and goal time for mile-by-mile splits.{" "}
-          {ALL_COMBOS.length} calculators available.
+          {ALL_COMBOS.length} calculators available. Want more than splits? The{" "}
+          {BRAND_NAME} app is coming soon — join the waitlist below.
         </p>
       </header>
 
@@ -38,6 +41,8 @@ export default function CalculatorsPage() {
           />
         ))}
       </div>
+
+      <CTAWaitlist className="mt-8 sm:mt-10" />
     </PageShell>
   );
 }

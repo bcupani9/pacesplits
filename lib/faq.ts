@@ -22,6 +22,11 @@ export const FAQ_ITEMS: FAQItem[] = [
   {
     question: "Are these calculators free to use?",
     answer:
-      "Yes. Every calculator is free with no signup, account, or app download required. Pick a distance and goal time, get your pace and mile-by-mile splits instantly, and come back as often as you need while training or planning race day.",
+      "Yes. Every calculator is free with no signup or account required. Pick a distance and goal time, get your pace and mile-by-mile splits instantly, and come back as often as you need while training or planning race day.",
+  },
+  {
+    question: "What is the PaceSplits app?",
+    answer:
+      "The PaceSplits app is the next step beyond these free calculators. It will build a personalized training plan around your goal pace — workouts, weekly mileage, and race-day strategy tailored to your target time. Join the app waitlist on the homepage or any calculator page to get early access when it launches.",
   },
 ];

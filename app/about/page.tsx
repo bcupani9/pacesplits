@@ -1,27 +1,28 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import CTAWaitlist from "@/components/CTAWaitlist";
 import PageShell from "@/components/PageShell";
 import { BRAND_NAME } from "@/lib/brand";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "PaceSplits is a free running pace calculator with mile-by-mile splits for every race distance and goal time.",
+    "PaceSplits is a free running pace calculator with mile-by-mile splits. The PaceSplits app — personalized training plans around your goal pace — is coming soon.",
 };
 
 const features = [
   {
-    title: "Built for goal-setters",
-    body: "Every page targets a specific distance and finish time — sub-3:05 marathon, sub-20 5K, and hundreds more.",
+    title: "Free calculators, right now",
+    body: "Every page targets a specific distance and finish time — sub-3:05 marathon, sub-20 5K, and hundreds more. Open any calculator instantly, no signup required.",
   },
   {
     title: "Mile-by-mile clarity",
-    body: "See the exact even pace per mile and cumulative splits at every marker. No guesswork on race day.",
+    body: "See the exact even pace per mile and cumulative splits at every marker. Toggle negative splits on any calculator to plan a smarter race-day strategy.",
   },
   {
-    title: "Free, no signup",
-    body: "Open any calculator instantly. No account, no app download, no paywall.",
+    title: "The PaceSplits app is coming",
+    body: "The free site gets you the numbers. The PaceSplits app will turn your goal pace into a full training plan — workouts, weekly mileage, and race-day guidance tailored to your target time.",
   },
 ];
 
@@ -35,7 +36,8 @@ export default function AboutPage() {
         <p className="mt-4 text-[16px] leading-relaxed text-white/60 sm:text-[18px]">
           {BRAND_NAME} is a free running pace calculator built for runners who
           plan races by the clock. Pick your distance, pick your goal, and get
-          the numbers you need to train and execute.
+          the numbers you need to train and execute — then join the app waitlist
+          for personalized plans built around your pace.
         </p>
       </header>
 
@@ -51,6 +53,8 @@ export default function AboutPage() {
           </article>
         ))}
       </div>
+
+      <CTAWaitlist className="mt-8" />
 
       <div className="mt-8">
         <Link

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import PaceTable from "@/components/PaceTable";
+import { BRAND_NAME } from "@/lib/brand";
 import { ALL_COMBOS, DISTANCES, getComboBySlug } from "@/lib/combos";
 import { calculatePace } from "@/lib/vdot";
 
@@ -29,16 +30,26 @@ export default function HomeHero() {
 
           <p className="mt-5 max-w-[500px] text-[16px] font-normal leading-relaxed text-white/60 sm:text-[18px]">
             Mile-by-mile split tables for every race distance and goal time —
-            free, instant, and built for runners who plan by the clock.
+            free, instant, and built for runners who plan by the clock. The{" "}
+            {BRAND_NAME} app, with personalized training plans around your pace,
+            is coming soon.
           </p>
 
-          <Link
-            href="/calculators"
-            className="btn-hero-cta focus-ring-dark mt-8 inline-flex items-center gap-2"
-          >
-            Browse calculators
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </Link>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <Link
+              href="/calculators"
+              className="btn-hero-cta focus-ring-dark inline-flex items-center gap-2"
+            >
+              Browse calculators
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+            <Link
+              href="#waitlist"
+              className="focus-ring-dark inline-flex items-center rounded-full border border-[var(--border-dark)] bg-white/5 px-5 py-3 text-[15px] font-medium text-white/80 transition-colors duration-150 hover:border-[#6b9fff]/50 hover:bg-white/10 hover:text-white"
+            >
+              Join the app waitlist
+            </Link>
+          </div>
 
           <dl className="mt-10 flex flex-wrap gap-8 sm:gap-12">
             {stats.map((stat, index) => (
