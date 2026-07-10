@@ -1,9 +1,4 @@
 import { ImageResponse } from "next/og";
-import {
-  AtmosphericBackground,
-  BRAND_COLORS,
-} from "@/lib/brand-image";
-import { INTER_FONT_FAMILY, loadInterFonts } from "@/lib/og-fonts";
 
 export const size = {
   width: 512,
@@ -12,9 +7,7 @@ export const size = {
 
 export const contentType = "image/png";
 
-export default async function Icon() {
-  const fonts = await loadInterFonts();
-
+export default function Icon() {
   return new ImageResponse(
     (
       <div
@@ -24,66 +17,22 @@ export default async function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          position: "relative",
-          overflow: "hidden",
-          background: BRAND_COLORS.bg,
-          fontFamily: INTER_FONT_FAMILY,
+          background: "#000000",
         }}
       >
-        <AtmosphericBackground width={512} height={512} />
-
-        <div
-          style={{
-            position: "relative",
-            display: "flex",
-            height: 220,
-            width: 220,
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: 56,
-            background: `linear-gradient(135deg, ${BRAND_COLORS.accent} 0%, ${BRAND_COLORS.accentViolet} 100%)`,
-            boxShadow: "0 12px 48px rgba(47, 111, 237, 0.55)",
-          }}
+        <svg
+          width="512"
+          height="512"
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 12,
-            }}
-          >
-            <div
-              style={{
-                height: 10,
-                width: 72,
-                borderRadius: 999,
-                background: "rgba(255, 255, 255, 0.9)",
-              }}
-            />
-            <div
-              style={{
-                height: 10,
-                width: 96,
-                borderRadius: 999,
-                background: BRAND_COLORS.white,
-              }}
-            />
-            <div
-              style={{
-                height: 10,
-                width: 72,
-                borderRadius: 999,
-                background: "rgba(255, 255, 255, 0.9)",
-              }}
-            />
-          </div>
-        </div>
+          <circle cx="256" cy="256" r="256" fill="#000000" />
+          <polygon points="256,148 372,364 140,364" fill="#FFFFFF" />
+        </svg>
       </div>
     ),
     {
       ...size,
-      fonts,
     }
   );
 }
