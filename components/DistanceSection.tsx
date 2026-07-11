@@ -9,12 +9,14 @@ interface DistanceSectionProps {
   distance: Distance;
   featuredCombos: Combo[];
   allCombos: Combo[];
+  hubHref?: string;
 }
 
 export default function DistanceSection({
   distance,
   featuredCombos,
   allCombos,
+  hubHref,
 }: DistanceSectionProps) {
   const [expanded, setExpanded] = useState(false);
   const theme = getDistanceTheme(distance.id);
@@ -31,16 +33,29 @@ export default function DistanceSection({
         } as React.CSSProperties
       }
     >
-      <div className="mb-4">
-        <h2
-          className="text-[20px] font-semibold"
-          style={{ color: theme.color }}
-        >
-          {distance.name}
-        </h2>
-        <p className="mt-0.5 text-[13px] text-white/50">
-          {distance.distanceKm} km · {allCombos.length} goal times
-        </p>
+      <div className="mb-4 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+        <div>
+          <h2
+            className="text-[20px] font-semibold"
+            style={{ color: theme.color }}
+          >
+            {distance.name}
+          </h2>
+          <p className="mt-0.5 text-[13px] text-white/50">
+            {distance.distanceKm} km · {allCombos.length} goal times
+          </p>
+        </div>
+        {hubHref && (
+          <Link
+            href={hubHref}
+            className="focus-ring-dark group text-[13px] font-medium text-white/50 transition-colors duration-150 hover:text-white/80"
+          >
+            Pace chart{" "}
+            <span className="arrow-shift" aria-hidden="true">
+              →
+            </span>
+          </Link>
+        )}
       </div>
 
       <ul
@@ -77,12 +92,19 @@ export default function DistanceSection({
         <button
           type="button"
           onClick={() => setExpanded((prev) => !prev)}
-          className="focus-ring-dark mt-4 text-[14px] font-medium transition-colors duration-150 ease-in-out"
+          className="focus-ring-dark group mt-4 text-[14px] font-medium transition-colors duration-150 ease-in-out"
           style={{ color: theme.color }}
         >
-          {expanded
-            ? "Show fewer goal times"
-            : `See all ${allCombos.length} goal times →`}
+          {expanded ? (
+            "Show fewer goal times"
+          ) : (
+            <>
+              See all {allCombos.length} goal times{" "}
+              <span className="arrow-shift" aria-hidden="true">
+                →
+              </span>
+            </>
+          )}
         </button>
       )}
     </section>

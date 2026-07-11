@@ -33,11 +33,10 @@ export default function PaceTable({
         {visibleSplits.map((split, index) => (
           <li
             key={split.mile}
-            className={
-              index < visibleSplits.length - 1
-                ? `border-b ${rowBorder}`
-                : undefined
-            }
+            className={`row-cascade${
+              index < visibleSplits.length - 1 ? ` border-b ${rowBorder}` : ""
+            }`}
+            style={{ animationDelay: `${Math.min(index, 9) * 40}ms` }}
           >
             <div className="flex items-center justify-between gap-4 px-4 py-3.5 sm:px-5">
               <span className={labelClass}>{split.label}</span>
@@ -61,7 +60,7 @@ export default function PaceTable({
         ))}
       </ul>
       {limit && splits.length > limit && (
-        <div className={footerClass}>
+        <div className={`row-cascade ${footerClass}`} style={{ animationDelay: "280ms" }}>
           +{splits.length - limit} more miles
         </div>
       )}

@@ -1,6 +1,7 @@
 import CTAWaitlist from "@/components/CTAWaitlist";
 import DistanceSection from "@/components/DistanceSection";
 import PageShell from "@/components/PageShell";
+import Reveal from "@/components/Reveal";
 import { BRAND_NAME } from "@/lib/brand";
 import {
   ALL_COMBOS,
@@ -8,6 +9,7 @@ import {
   getFeaturedGoalTimes,
   groupCombosByDistance,
 } from "@/lib/combos";
+import { HUB_SLUGS } from "@/lib/hub-copy";
 
 export const metadata = {
   title: "Calculators",
@@ -33,16 +35,20 @@ export default function CalculatorsPage() {
 
       <div className="space-y-4 sm:space-y-5">
         {DISTANCES.map((distance) => (
-          <DistanceSection
-            key={distance.id}
-            distance={distance}
-            featuredCombos={getFeaturedGoalTimes(distance.id)}
-            allCombos={grouped.get(distance.id) ?? []}
-          />
+          <Reveal key={distance.id}>
+            <DistanceSection
+              distance={distance}
+              featuredCombos={getFeaturedGoalTimes(distance.id)}
+              allCombos={grouped.get(distance.id) ?? []}
+              hubHref={`/${HUB_SLUGS[distance.id]}`}
+            />
+          </Reveal>
         ))}
       </div>
 
-      <CTAWaitlist className="mt-8 sm:mt-10" />
+      <Reveal>
+        <CTAWaitlist className="mt-8 sm:mt-10" />
+      </Reveal>
     </PageShell>
   );
 }

@@ -5,21 +5,23 @@ import type { FAQItem } from "@/lib/faq";
 
 interface FAQSectionProps {
   items: FAQItem[];
+  title?: string;
+  className?: string;
+  headingClassName?: string;
 }
 
-export default function FAQSection({ items }: FAQSectionProps) {
+export default function FAQSection({
+  items,
+  title = "Frequently asked questions",
+  className = "mx-auto w-full max-w-3xl px-4 pb-16 sm:px-6 sm:pb-20",
+  headingClassName = "text-[28px] font-semibold leading-tight tracking-tight text-white sm:text-[34px]",
+}: FAQSectionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section
-      aria-labelledby="faq-heading"
-      className="mx-auto w-full max-w-3xl px-4 pb-16 sm:px-6 sm:pb-20"
-    >
-      <h2
-        id="faq-heading"
-        className="text-[28px] font-semibold leading-tight tracking-tight text-white sm:text-[34px]"
-      >
-        Frequently asked questions
+    <section aria-labelledby="faq-heading" className={className}>
+      <h2 id="faq-heading" className={headingClassName}>
+        {title}
       </h2>
 
       <div className="card-dark mt-6 overflow-hidden">
@@ -52,23 +54,24 @@ export default function FAQSection({ items }: FAQSectionProps) {
                     {item.question}
                   </span>
                   <span
-                    className="shrink-0 text-[18px] leading-none text-white/45"
+                    className="faq-icon shrink-0 text-white/45"
                     aria-hidden="true"
-                  >
-                    {isOpen ? "−" : "+"}
-                  </span>
+                  />
                 </button>
               </h3>
               <div
                 id={`faq-answer-${index}`}
                 role="region"
                 aria-labelledby={`faq-question-${index}`}
-                hidden={!isOpen}
-                className="px-5 pb-4 sm:px-6"
+                aria-hidden={!isOpen}
+                data-open={isOpen}
+                className="accordion-panel"
               >
-                <p className="text-[15px] leading-relaxed text-white/55">
-                  {item.answer}
-                </p>
+                <div>
+                  <p className="px-5 pb-4 text-[15px] leading-relaxed text-white/55 sm:px-6">
+                    {item.answer}
+                  </p>
+                </div>
               </div>
             </div>
           );

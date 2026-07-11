@@ -32,7 +32,7 @@ export default function PacingToggle({
           type="button"
           onClick={() => onStrategyChange("even")}
           aria-pressed={strategy === "even"}
-          className={`focus-ring-dark rounded-full px-4 py-2 text-[13px] font-medium transition-all duration-150 ease-in-out sm:text-[14px] ${
+          className={`focus-ring-dark rounded-full px-4 py-2 text-[13px] font-medium transition-all duration-150 ease-in-out active:scale-[0.98] sm:text-[14px] ${
             strategy === "even"
               ? "bg-[var(--accent)] text-white shadow-sm"
               : "text-white/55 hover:text-white/80"
@@ -44,7 +44,7 @@ export default function PacingToggle({
           type="button"
           onClick={() => onStrategyChange("negative")}
           aria-pressed={strategy === "negative"}
-          className={`focus-ring-dark rounded-full px-4 py-2 text-[13px] font-medium transition-all duration-150 ease-in-out sm:text-[14px] ${
+          className={`focus-ring-dark rounded-full px-4 py-2 text-[13px] font-medium transition-all duration-150 ease-in-out active:scale-[0.98] sm:text-[14px] ${
             strategy === "negative"
               ? "bg-[var(--accent)] text-white shadow-sm"
               : "text-white/55 hover:text-white/80"
@@ -66,7 +66,7 @@ export default function PacingToggle({
               type="button"
               onClick={() => onPercentChange(option.percent)}
               aria-pressed={negativeSplitPercent === option.percent}
-              className={`focus-ring-dark rounded-full border px-3 py-1.5 text-[12px] font-medium transition-all duration-150 ease-in-out sm:text-[13px] ${
+              className={`focus-ring-dark rounded-full border px-3 py-1.5 text-[12px] font-medium transition-all duration-150 ease-in-out active:scale-[0.98] sm:text-[13px] ${
                 negativeSplitPercent === option.percent
                   ? "border-[var(--accent)] bg-[var(--accent)]/15 text-[#6b9fff]"
                   : "border-[var(--border-dark)] bg-white/5 text-white/55 hover:border-white/20 hover:text-white/80"

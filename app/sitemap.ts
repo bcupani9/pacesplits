@@ -1,10 +1,18 @@
 import type { MetadataRoute } from "next";
 import { ALL_COMBOS } from "@/lib/combos";
+import { HUB_SLUGS } from "@/lib/hub-copy";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://pacesplits.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const hubPages = Object.values(HUB_SLUGS).map((slug) => ({
+    url: `${siteUrl}/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.9,
+  }));
+
   const calculatorPages = ALL_COMBOS.map((combo) => ({
     url: `${siteUrl}/pace-calculator/${combo.slug}`,
     lastModified: new Date(),
@@ -31,6 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    ...hubPages,
     ...calculatorPages,
   ];
 }

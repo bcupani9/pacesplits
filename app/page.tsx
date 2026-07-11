@@ -3,6 +3,7 @@ import CTAWaitlist from "@/components/CTAWaitlist";
 import FAQSchema from "@/components/FAQSchema";
 import FAQSection from "@/components/FAQSection";
 import HomeHero from "@/components/HomeHero";
+import Reveal from "@/components/Reveal";
 import { FAQ_ITEMS } from "@/lib/faq";
 
 export const metadata: Metadata = {
@@ -21,9 +22,13 @@ export default function HomePage() {
     <>
       <HomeHero />
       <div className="mx-auto w-full max-w-3xl px-4 sm:px-6">
-        <CTAWaitlist id="waitlist" className="mb-10 sm:mb-12" />
+        <Reveal className="mb-10 sm:mb-12">
+          <CTAWaitlist id="waitlist" />
+        </Reveal>
       </div>
-      <FAQSection items={FAQ_ITEMS} />
+      <Reveal>
+        <FAQSection items={FAQ_ITEMS} />
+      </Reveal>
       <FAQSchema items={FAQ_ITEMS} />
     </>
   );

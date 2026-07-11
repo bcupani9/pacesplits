@@ -1,11 +1,23 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import BreadcrumbSchema from "@/components/BreadcrumbSchema";
 import CalculatorClient from "@/components/CalculatorClient";
+import CTAWaitlist from "@/components/CTAWaitlist";
+import FAQSchema from "@/components/FAQSchema";
+import FAQSection from "@/components/FAQSection";
+import NearbyGoalTimes from "@/components/NearbyGoalTimes";
 import PageShell from "@/components/PageShell";
-import { ALL_COMBOS, getComboBySlug } from "@/lib/combos";
+import Reveal from "@/components/Reveal";
+import {
+  ALL_COMBOS,
+  getComboBySlug,
+  getNearbyCombos,
+} from "@/lib/combos";
 import { generateContextParagraph } from "@/lib/context-copy";
 import { getDistanceTheme } from "@/lib/distance-theme";
-import { calculatePace } from "@/lib/vdot";
+import { HUB_COPY } from "@/lib/hub-copy";
+import { buildCalculatorFAQ, distanceInSentence, SITE_URL } from "@/lib/seo";
+import { calculatePace, formatPace } from "@/lib/vdot";
 
 interface PageProps {
   params: { slug: string };
@@ -24,8 +36,13 @@ export function generateMetadata({ params }: PageProps): Metadata {
     };
   }
 
-  const title = `${combo.distance.name} Pace Calculator: ${combo.goalLabel} Splits`;
-  const description = `Mile-by-mile pace splits for a ${combo.distance.name.toLowerCase()} in ${combo.goalLabelLong}. See the exact pace per mile and per km you need to hit your goal.`;
+  const pace = calculatePace(combo.distance.distanceKm, combo.goalTimeSeconds);
+  const paceMi = formatPace(pace.pacePerMileSeconds);
+  const paceKm = formatPace(pace.pacePerKmSeconds);
+  const name = distanceInSentence(combo.distance.name);
+
+  const title = `${combo.goalLabel} ${combo.distance.name} Pace: ${paceMi}/mi + Mile Splits`;
+  const description = `Run a ${combo.goalLabel.toLowerCase()} ${name} by holding ${paceMi} per mile (${paceKm} per km). Free mile-by-mile split chart with cumulative checkpoint times and a negative split pacing option.`;
 
   return {
     title,
@@ -52,9 +69,12 @@ export default function PaceCalculatorPage({ params }: PageProps) {
           </p>
           <Link
             href="/calculators"
-            className="focus-ring-dark mt-6 inline-block text-[15px] font-medium text-[#6b9fff]"
+            className="focus-ring-dark group mt-6 inline-block text-[15px] font-medium text-[#6b9fff] transition-colors duration-150 hover:text-[#8bb3ff]"
           >
-            ‹ All calculators
+            <span className="arrow-shift-back" aria-hidden="true">
+              ‹
+            </span>{" "}
+            All calculators
           </Link>
         </div>
       </PageShell>
@@ -62,6 +82,7 @@ export default function PaceCalculatorPage({ params }: PageProps) {
   }
 
   const theme = getDistanceTheme(combo.distance.id);
+  const hub = HUB_COPY[combo.distance.id];
   const initialPace = calculatePace(
     combo.distance.distanceKm,
     combo.goalTimeSeconds
@@ -71,14 +92,19 @@ export default function PaceCalculatorPage({ params }: PageProps) {
     combo.goalTimeSeconds,
     initialPace.pacePerKmSeconds
   );
+  const faqItems = buildCalculatorFAQ(combo, initialPace);
+  const nearby = getNearbyCombos(combo);
 
   return (
     <PageShell>
       <Link
-        href="/calculators"
-        className="focus-ring-dark mb-5 inline-block text-[15px] text-white/50 transition-colors duration-150 ease-in-out hover:text-white/80"
+        href={`/${hub.slug}`}
+        className="focus-ring-dark group mb-5 inline-block text-[15px] text-white/50 transition-colors duration-150 ease-in-out hover:text-white/80"
       >
-        ‹ All calculators
+        <span className="arrow-shift-back" aria-hidden="true">
+          ‹
+        </span>{" "}
+        {combo.distance.name} pace calculator
       </Link>
 
       <h1 className="sr-only">
@@ -90,6 +116,38 @@ export default function PaceCalculatorPage({ params }: PageProps) {
         initialPace={initialPace}
         theme={theme}
         contextParagraphs={contextParagraphs}
+      />
+
+      <NearbyGoalTimes
+        nearby={nearby}
+        hubHref={`/${hub.slug}`}
+        hubLabel={`Full ${distanceInSentence(combo.distance.name)} pace chart`}
+        theme={theme}
+      />
+
+      <Reveal>
+        <FAQSection
+          items={faqItems}
+          title={`${combo.goalLabel} ${combo.distance.name} FAQ`}
+          className="mt-10"
+          headingClassName="text-[22px] font-semibold leading-tight tracking-tight text-white sm:text-[24px]"
+        />
+      </Reveal>
+
+      <Reveal>
+        <CTAWaitlist className="mt-8 sm:mt-10" />
+      </Reveal>
+
+      <FAQSchema items={faqItems} />
+      <BreadcrumbSchema
+        items={[
+          { name: "PaceSplits", url: SITE_URL },
+          { name: hub.h1, url: `${SITE_URL}/${hub.slug}` },
+          {
+            name: `${combo.goalLabel} ${combo.distance.name}`,
+            url: `${SITE_URL}/pace-calculator/${combo.slug}`,
+          },
+        ]}
       />
     </PageShell>
   );

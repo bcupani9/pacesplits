@@ -27,6 +27,12 @@
     scroll-behavior: smooth;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
   body {
     color: var(--text-on-dark);
     background: var(--bg);
@@ -109,13 +115,19 @@
     border: 1.5px solid var(--border-dark);
     background: rgba(255, 255, 255, 0.06);
     color: rgba(255, 255, 255, 0.85);
-    transition: border-color 150ms ease, color 150ms ease, background-color 150ms ease;
+    transition: border-color 150ms ease, color 150ms ease,
+      background-color 150ms ease, transform 150ms ease;
   }
 
   .chip-plain:hover {
     border-color: var(--distance-color);
     background: rgba(255, 255, 255, 0.1);
     color: var(--distance-color);
+    transform: scale(1.02);
+  }
+
+  .chip-plain:active {
+    transform: scale(0.98);
   }
 
   .chip-gradient-wrap {
@@ -128,7 +140,11 @@
 
   .chip-gradient-wrap:hover {
     opacity: 0.92;
-    transform: translateY(-1px);
+    transform: translateY(-1px) scale(1.02);
+  }
+
+  .chip-gradient-wrap:active {
+    transform: scale(0.98);
   }
 
   .chip-gradient-inner {
@@ -252,5 +268,133 @@
 
   .text-muted-on-dark {
     color: var(--text-muted-on-dark);
+  }
+
+  /* Scroll-triggered reveals — Reveal.tsx sets data-reveal only when JS is
+     running and motion is allowed, so content is never hidden without it. */
+  [data-reveal] {
+    transition: opacity 380ms ease, transform 380ms ease;
+  }
+
+  [data-reveal="hidden"] {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  .arrow-shift {
+    display: inline-block;
+    transition: transform 150ms ease;
+  }
+
+  .group:hover .arrow-shift {
+    transform: translateX(2.5px);
+  }
+
+  .arrow-shift-back {
+    display: inline-block;
+    transition: transform 150ms ease;
+  }
+
+  .group:hover .arrow-shift-back {
+    transform: translateX(-2.5px);
+  }
+
+  .accordion-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 260ms ease;
+  }
+
+  .accordion-panel[data-open="true"] {
+    grid-template-rows: 1fr;
+  }
+
+  .accordion-panel > div {
+    overflow: hidden;
+    min-height: 0;
+    /* stays visible while collapsing, hides once the panel has closed */
+    visibility: hidden;
+    transition: visibility 0s 260ms;
+  }
+
+  .accordion-panel[data-open="true"] > div {
+    visibility: visible;
+    transition: visibility 0s;
+  }
+
+  .faq-icon {
+    position: relative;
+    display: block;
+    width: 12px;
+    height: 12px;
+  }
+
+  .faq-icon::before,
+  .faq-icon::after {
+    content: "";
+    position: absolute;
+    border-radius: 1px;
+    background: currentColor;
+    transition: transform 220ms ease, opacity 220ms ease;
+  }
+
+  .faq-icon::before {
+    top: 5.25px;
+    left: 0;
+    width: 12px;
+    height: 1.5px;
+  }
+
+  .faq-icon::after {
+    top: 0;
+    left: 5.25px;
+    width: 1.5px;
+    height: 12px;
+  }
+
+  [aria-expanded="true"] > .faq-icon::after {
+    transform: rotate(90deg);
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .row-cascade {
+      animation: row-in 320ms ease both;
+    }
+
+    .fade-in-soft {
+      animation: fade-in 600ms ease both;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .accordion-panel,
+    .accordion-panel > div,
+    .faq-icon::before,
+    .faq-icon::after,
+    .arrow-shift,
+    .arrow-shift-back {
+      transition: none;
+    }
+  }
+}
+
+@keyframes row-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

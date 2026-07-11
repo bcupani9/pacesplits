@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import CTAWaitlist from "@/components/CTAWaitlist";
 import PaceTable from "@/components/PaceTable";
 import PacingToggle from "@/components/PacingToggle";
 import type { Combo } from "@/lib/combos";
@@ -113,7 +112,11 @@ export default function CalculatorClient({
         <h2 className="mb-3 px-1 text-[13px] font-medium uppercase tracking-[0.06em] text-white/45">
           Mile-by-mile splits
         </h2>
-        <PaceTable splits={pace.splits} showVariablePace={isNegative} />
+        <PaceTable
+          key={`${strategy}-${negativeSplitPercent}`}
+          splits={pace.splits}
+          showVariablePace={isNegative}
+        />
       </div>
 
       {contextParagraphs && contextParagraphs.length > 0 && (
@@ -121,8 +124,6 @@ export default function CalculatorClient({
           {contextParagraphs.join(" ")}
         </p>
       )}
-
-      <CTAWaitlist className="mt-8 sm:mt-10" />
     </>
   );
 }

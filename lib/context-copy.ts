@@ -132,6 +132,25 @@ const CLOSING_SENTENCES = [
   "The mile-by-mile view above helps you pace by feel, not just by watch.",
 ];
 
+const TIER_ASSESSMENTS: Record<SkillTier, string> = {
+  "highly-competitive":
+    "a highly competitive result that puts you near the front of most fields",
+  "strong-age-group":
+    "a strong age-group result, ahead of most recreational runners",
+  "solid-recreational":
+    "a solid recreational result that reflects consistent training",
+  "average-finisher": "right in line with a typical finisher",
+  "finish-focused":
+    "a completion-focused goal — crossing the line is the win",
+};
+
+export function getGoalAssessment(
+  distanceId: DistanceId,
+  goalSeconds: number
+): string {
+  return TIER_ASSESSMENTS[getSkillTier(distanceId, goalSeconds)];
+}
+
 function getSkillTier(distanceId: DistanceId, goalSeconds: number): SkillTier {
   for (const { tier, maxSeconds } of TIER_THRESHOLDS_SECONDS[distanceId]) {
     if (goalSeconds <= maxSeconds) {

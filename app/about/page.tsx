@@ -54,15 +54,15 @@ export default function AboutPage() {
         ))}
       </div>
 
-      <CTAWaitlist className="mt-8" />
+      <CTAWaitlist className="mt-8 sm:mt-10" />
 
       <div className="mt-8">
         <Link
           href="/calculators"
-          className="btn-hero-cta focus-ring-dark inline-flex items-center gap-2"
+          className="btn-hero-cta focus-ring-dark group inline-flex items-center gap-2"
         >
           Browse calculators
-          <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          <ArrowRight className="arrow-shift h-4 w-4" aria-hidden="true" />
         </Link>
       </div>
     </PageShell>

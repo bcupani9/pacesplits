@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import HeroStats, { type HeroStat } from "@/components/HeroStats";
 import PaceTable from "@/components/PaceTable";
+import Reveal from "@/components/Reveal";
 import { BRAND_NAME } from "@/lib/brand";
 import { ALL_COMBOS, DISTANCES, getComboBySlug } from "@/lib/combos";
 import { calculatePace } from "@/lib/vdot";
@@ -13,9 +15,9 @@ export default function HomeHero() {
     ? calculatePace(combo.distance.distanceKm, combo.goalTimeSeconds).splits
     : [];
 
-  const stats = [
-    { value: `${ALL_COMBOS.length}+`, label: "Goal times" },
-    { value: String(DISTANCES.length), label: "Distances" },
+  const stats: HeroStat[] = [
+    { value: ALL_COMBOS.length, suffix: "+", label: "Goal times", badge: true },
+    { value: DISTANCES.length, label: "Distances" },
     { value: "Free", label: "Forever" },
   ];
 
@@ -38,36 +40,20 @@ export default function HomeHero() {
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Link
               href="/calculators"
-              className="btn-hero-cta focus-ring-dark inline-flex items-center gap-2"
+              className="btn-hero-cta focus-ring-dark group inline-flex items-center gap-2"
             >
               Browse calculators
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              <ArrowRight className="arrow-shift h-4 w-4" aria-hidden="true" />
             </Link>
             <Link
               href="#waitlist"
-              className="focus-ring-dark inline-flex items-center rounded-full border border-[var(--border-dark)] bg-white/5 px-5 py-3 text-[15px] font-medium text-white/80 transition-colors duration-150 hover:border-[#6b9fff]/50 hover:bg-white/10 hover:text-white"
+              className="focus-ring-dark inline-flex items-center rounded-full border border-[var(--border-dark)] bg-white/5 px-5 py-3 text-[15px] font-medium text-white/80 transition-all duration-150 ease-out hover:border-[#6b9fff]/50 hover:bg-white/10 hover:text-white active:scale-[0.98]"
             >
               Join the app waitlist
             </Link>
           </div>
 
-          <dl className="mt-10 flex flex-wrap gap-8 sm:gap-12">
-            {stats.map((stat, index) => (
-              <div key={stat.label}>
-                <dt className="sr-only">{stat.label}</dt>
-                <dd className="text-[28px] font-semibold leading-none text-white sm:text-[32px]">
-                  {index === 0 ? (
-                    <span className="headline-badge">{stat.value}</span>
-                  ) : (
-                    stat.value
-                  )}
-                </dd>
-                <dd className="mt-1.5 text-[13px] font-medium uppercase tracking-[0.06em] text-white/45">
-                  {stat.label}
-                </dd>
-              </div>
-            ))}
-          </dl>
+          <HeroStats stats={stats} />
 
           <p className="mt-6 text-[13px] text-white/45">
             Built by a sub-3:00 marathoner training for their next PR.
@@ -75,25 +61,27 @@ export default function HomeHero() {
         </div>
 
         {combo && (
-          <div
-            className="card-dark card-accent-top mt-12 overflow-hidden sm:mt-16"
-            style={
-              { "--distance-gradient": "var(--brand-gradient)" } as React.CSSProperties
-            }
-          >
-            <div className="border-b border-[var(--border-dark)] px-5 py-4 sm:px-6">
-              <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-white/45">
-                Live preview
-              </p>
-              <Link
-                href={`/pace-calculator/${combo.slug}`}
-                className="focus-ring-dark mt-1 inline-block text-[17px] font-semibold text-white transition-colors duration-150 hover:text-[#6b9fff]"
-              >
-                {combo.distance.name} · {combo.goalLabel}
-              </Link>
+          <Reveal className="mt-12 sm:mt-16">
+            <div
+              className="card-dark card-accent-top overflow-hidden"
+              style={
+                { "--distance-gradient": "var(--brand-gradient)" } as React.CSSProperties
+              }
+            >
+              <div className="border-b border-[var(--border-dark)] px-5 py-4 sm:px-6">
+                <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-white/45">
+                  Live preview
+                </p>
+                <Link
+                  href={`/pace-calculator/${combo.slug}`}
+                  className="focus-ring-dark mt-1 inline-block text-[17px] font-semibold text-white transition-colors duration-150 hover:text-[#6b9fff]"
+                >
+                  {combo.distance.name} · {combo.goalLabel}
+                </Link>
+              </div>
+              <PaceTable splits={previewSplits} limit={6} embedded />
             </div>
-            <PaceTable splits={previewSplits} limit={6} embedded />
-          </div>
+          </Reveal>
         )}
       </div>
     </section>

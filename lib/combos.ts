@@ -126,6 +126,22 @@ export function getComboBySlug(slug: string): Combo | undefined {
   return ALL_COMBOS.find((combo) => combo.slug === slug);
 }
 
+export function getNearbyCombos(combo: Combo, count = 6): Combo[] {
+  const sameDistance = ALL_COMBOS.filter(
+    (c) => c.distance.id === combo.distance.id
+  );
+  const index = sameDistance.findIndex((c) => c.slug === combo.slug);
+  if (index === -1) return [];
+
+  const windowSize = count + 1;
+  let start = Math.max(0, index - Math.floor(count / 2));
+  start = Math.min(start, Math.max(0, sameDistance.length - windowSize));
+
+  return sameDistance
+    .slice(start, start + windowSize)
+    .filter((c) => c.slug !== combo.slug);
+}
+
 export function groupCombosByDistance(): Map<DistanceId, Combo[]> {
   const grouped = new Map<DistanceId, Combo[]>();
 
