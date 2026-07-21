@@ -3,23 +3,46 @@
 @tailwind utilities;
 
 :root {
-  --bg: #0a0e14;
-  --surface: #ffffff;
-  --border: #e5e5ea;
-  --border-dark: rgba(255, 255, 255, 0.1);
-  --text: #1c1c1e;
-  --text-muted: #8e8e93;
-  --text-on-dark: #ffffff;
-  --text-muted-on-dark: rgba(255, 255, 255, 0.6);
-  --accent: #2f6fed;
-  --bg-tinted: #f2f2f7;
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08);
+  /* Cinderpath — the site's only theme now, matching the PaceSplits app:
+     chalky bone stone, cinder-red, lane-paint gold. Variable *names* below
+     are unchanged from the old dark-blue/violet system so every component
+     that references them doesn't need touching — only the *values* moved.
+     --text-on-dark / --border-dark kept their names despite no longer
+     being "on dark"; renaming them site-wide wasn't worth the diff. */
+  --bg: #e6e1d2;
+  --surface: #dcd6c4;
+  --border: #c9c1ac;
+  --border-dark: rgba(30, 26, 22, 0.14);
+  --text: #1e1a16;
+  --text-muted: #55503f;
+  --text-on-dark: #1e1a16;
+  --text-muted-on-dark: rgba(30, 26, 22, 0.62);
+  --accent: #c1401f;
+  --bg-tinted: #dcd6c4;
+  --shadow-card: 0 1px 3px rgba(30, 26, 22, 0.1);
 
-  --5k-gradient: linear-gradient(135deg, #34d399, #10b981);
-  --10k-gradient: linear-gradient(135deg, #60a5fa, #2f6fed);
-  --half-gradient: linear-gradient(135deg, #a78bfa, #7c3aed);
-  --marathon-gradient: linear-gradient(135deg, #fb923c, #ef4444);
-  --brand-gradient: linear-gradient(135deg, #2f6fed, #7c3aed);
+  /* Per-distance identity — re-hued to warm, cinder-adjacent tones so each
+     stays visually distinct without reintroducing cool blue/violet/green. */
+  --5k-gradient: linear-gradient(135deg, #e7a93a, #c1401f);
+  --10k-gradient: linear-gradient(135deg, #d9832f, #9e3018);
+  --half-gradient: linear-gradient(135deg, #c1401f, #7a2412);
+  --marathon-gradient: linear-gradient(135deg, #9e3018, #55503f);
+  --brand-gradient: linear-gradient(135deg, #e8703d, #c1401f);
+
+  /* Cinderpath tokens proper. */
+  --cp-bone: #e6e1d2;
+  --cp-bone-deep: #dcd6c4;
+  --cp-line: #c9c1ac;
+  --cp-ink: #1e1a16;
+  --cp-graphite: #55503f;
+  --cp-cinder: #c1401f;
+  --cp-cinder-deep: #9e3018;
+  --cp-cinder-light: #e8703d;
+  --cp-lane: #e7a93a;
+  /* Intentional dark accent for the hero's night-track visual only — a
+     single deliberate moment of contrast, not a second site theme. */
+  --cp-dusk-top: #161b22;
+  --cp-dusk-mid: #3b2a24;
 }
 
 @layer base {
@@ -34,15 +57,15 @@
   }
 
   body {
-    color: var(--text-on-dark);
-    background: var(--bg);
+    color: var(--cp-ink);
+    background: var(--cp-bone);
     font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
   }
 }
 
 @layer components {
   .site-atmospheric {
-    background: linear-gradient(180deg, #0a0e14 0%, #05070a 100%);
+    background: linear-gradient(180deg, #eae5d7 0%, var(--cp-bone) 45%, #ddd7c5 100%);
   }
 
   .site-atmospheric::before {
@@ -52,46 +75,44 @@
     background:
       radial-gradient(
         ellipse 70% 55% at 72% 58%,
-        rgba(47, 111, 237, 0.28),
+        rgba(193, 64, 31, 0.14),
         transparent 68%
       ),
       radial-gradient(
         ellipse 55% 45% at 22% 78%,
-        rgba(255, 107, 74, 0.2),
+        rgba(231, 169, 58, 0.16),
         transparent 65%
       ),
       conic-gradient(
         from 210deg at 60% 40%,
-        rgba(47, 111, 237, 0.08),
+        rgba(193, 64, 31, 0.05),
         transparent 35%,
-        rgba(255, 107, 74, 0.06),
+        rgba(231, 169, 58, 0.05),
         transparent 70%
       );
     pointer-events: none;
   }
 
   .site-grain {
-    opacity: 0.35;
+    opacity: 0.2;
     pointer-events: none;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     background-repeat: repeat;
     background-size: 128px 128px;
-    mix-blend-mode: overlay;
+    mix-blend-mode: multiply;
   }
 
   .card {
-    background: var(--surface);
+    background: var(--cp-bone);
     border-radius: 20px;
     box-shadow: var(--shadow-card);
   }
 
   .card-dark {
-    border-radius: 20px;
+    border-radius: 12px;
     border: 1px solid var(--border-dark);
-    background: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: var(--cp-bone-deep);
+    box-shadow: 0 4px 20px rgba(30, 26, 22, 0.08);
   }
 
   .card-accent-top {
@@ -113,15 +134,15 @@
     display: inline-block;
     border-radius: 999px;
     border: 1.5px solid var(--border-dark);
-    background: rgba(255, 255, 255, 0.06);
-    color: rgba(255, 255, 255, 0.85);
+    background: rgba(30, 26, 22, 0.04);
+    color: var(--cp-graphite);
     transition: border-color 150ms ease, color 150ms ease,
       background-color 150ms ease, transform 150ms ease;
   }
 
   .chip-plain:hover {
     border-color: var(--distance-color);
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(30, 26, 22, 0.06);
     color: var(--distance-color);
     transform: scale(1.02);
   }
@@ -150,17 +171,17 @@
   .chip-gradient-inner {
     display: inline-block;
     border-radius: 999px;
-    background: rgba(12, 14, 20, 0.85);
+    background: var(--cp-bone);
     color: var(--distance-color);
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .pill-gradient {
     display: inline-block;
     border-radius: 999px;
     background: var(--distance-gradient);
-    color: #ffffff;
-    font-weight: 500;
+    color: var(--cp-bone);
+    font-weight: 600;
   }
 
   .hero-wash {
@@ -174,7 +195,7 @@
     inset: 0;
     background: radial-gradient(
       ellipse 80% 60% at 50% 35%,
-      color-mix(in srgb, var(--distance-color) 12%, transparent),
+      color-mix(in srgb, var(--distance-color) 14%, transparent),
       transparent 70%
     );
     pointer-events: none;
@@ -198,22 +219,23 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 14px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--cp-bone);
     background: var(--brand-gradient);
-    color: #ffffff;
-    font-weight: 600;
-    box-shadow: 0 4px 20px rgba(47, 111, 237, 0.35);
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 100%, 14px 100%);
+    box-shadow: 0 4px 20px rgba(193, 64, 31, 0.3);
     transition: transform 175ms ease, box-shadow 175ms ease, opacity 175ms ease;
   }
 
   .btn-brand:hover {
-    transform: scale(1.02);
-    box-shadow: 0 6px 28px rgba(47, 111, 237, 0.42);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(193, 64, 31, 0.38);
   }
 
   .btn-brand:active {
     transform: scale(0.98);
-    box-shadow: 0 3px 14px rgba(47, 111, 237, 0.3);
   }
 
   .btn-brand:focus-visible {
@@ -223,9 +245,9 @@
 
   .nav-floating {
     border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(20, 20, 22, 0.7);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.28);
+    border: 1px solid var(--cp-line);
+    background: rgba(230, 225, 210, 0.82);
+    box-shadow: 0 4px 24px rgba(30, 26, 22, 0.1);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
   }
@@ -233,28 +255,33 @@
   .headline-badge {
     display: inline-block;
     border-radius: 9999px;
-    background: rgba(47, 111, 237, 0.2);
-    color: #6b9fff;
+    background: rgba(193, 64, 31, 0.14);
+    color: var(--cp-cinder-deep);
     padding: 0.08em 0.45em;
     vertical-align: baseline;
     white-space: nowrap;
   }
 
   .btn-hero-cta {
-    border-radius: 9999px;
-    background: var(--accent);
-    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    background: var(--cp-cinder);
+    color: var(--cp-bone);
     padding: 0.875rem 1.5rem;
     font-size: 15px;
-    font-weight: 600;
-    box-shadow: 0 4px 20px rgba(47, 111, 237, 0.4);
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 100%, 14px 100%);
+    box-shadow: 0 4px 20px rgba(193, 64, 31, 0.32);
     transition: transform 150ms ease, box-shadow 150ms ease, filter 150ms ease;
   }
 
   .btn-hero-cta:hover {
-    transform: scale(1.02);
-    filter: brightness(1.08);
-    box-shadow: 0 6px 28px rgba(47, 111, 237, 0.5);
+    transform: translateY(-1px);
+    filter: brightness(1.06);
+    box-shadow: 0 6px 26px rgba(193, 64, 31, 0.4);
   }
 
   .btn-hero-cta:active {
@@ -262,7 +289,7 @@
   }
 
   .focus-ring-dark:focus-visible {
-    outline: 2px solid rgba(107, 159, 255, 0.9);
+    outline: 2px solid var(--cp-cinder);
     outline-offset: 2px;
   }
 
@@ -376,6 +403,65 @@
     .arrow-shift-back {
       transition: none;
     }
+  }
+
+  /* ---------- Cinderpath primitives (used site-wide) ---------- */
+
+  .cp-dot-grid {
+    background-image: radial-gradient(
+      circle,
+      var(--cp-line) 1.4px,
+      transparent 1.4px
+    );
+    background-size: 24px 24px;
+  }
+
+  .cp-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    padding: 0.12em 0.6em 0.16em;
+    border-radius: 999px;
+    font-size: 0.6em;
+    font-weight: 700;
+    vertical-align: middle;
+    transform: translateY(-0.05em);
+    white-space: nowrap;
+  }
+
+  .cp-badge-ink {
+    background: var(--cp-ink);
+    color: var(--cp-bone);
+  }
+
+  .cp-badge-cinder {
+    background: var(--cp-cinder);
+    color: var(--cp-bone);
+  }
+
+  .cp-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.6rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--cp-bone);
+    background: var(--cp-cinder);
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 100%, 14px 100%);
+    transition: transform 150ms ease, background 150ms ease;
+  }
+
+  .cp-cta:hover {
+    transform: translateY(-1px);
+    background: var(--cp-cinder-deep);
+  }
+
+  .cp-cta:active {
+    transform: scale(0.98);
   }
 }
 

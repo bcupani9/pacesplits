@@ -27,7 +27,10 @@ export default function NearbyGoalTimes({
         } as React.CSSProperties
       }
     >
-      <h2 className="mb-3 px-1 text-[13px] font-medium uppercase tracking-[0.06em] text-white/45">
+      <h2
+        className="mb-3 px-1 text-[13px] font-medium uppercase tracking-[0.06em]"
+        style={{ color: "var(--cp-graphite)" }}
+      >
         Nearby goal times
       </h2>
       <ul className="flex flex-wrap gap-2">

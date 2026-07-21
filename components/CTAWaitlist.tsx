@@ -57,20 +57,20 @@ export default function CTAWaitlist({ id, className = "" }: CTAWaitlistProps) {
         { "--distance-gradient": "var(--brand-gradient)" } as React.CSSProperties
       }
     >
-      <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-[#6b9fff]">
+      <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-[var(--cp-cinder-deep)]">
         Coming soon
       </p>
-      <h2 className="mt-2 text-[17px] font-semibold text-white sm:text-[19px]">
+      <h2 className="mt-2 text-[17px] font-semibold text-[var(--cp-ink)] sm:text-[19px]">
         Get the {BRAND_NAME} app
       </h2>
-      <p className="mt-2 text-[15px] leading-relaxed text-white/55">
+      <p className="mt-2 text-[15px] leading-relaxed text-[var(--cp-graphite)]">
         These free calculators give you the splits. The {BRAND_NAME} app turns
         your goal pace into a full training plan — workouts, weekly mileage, and
         race-day strategy built around your target time.
       </p>
 
       {isSubmitted ? (
-        <p className="mt-5 text-[15px] leading-relaxed text-white/75">
+        <p className="mt-5 text-[15px] leading-relaxed text-[var(--cp-ink)]/80">
           You&apos;re on the list — we&apos;ll email you when the {BRAND_NAME}{" "}
           app launches.
         </p>
@@ -89,7 +89,7 @@ export default function CTAWaitlist({ id, className = "" }: CTAWaitlistProps) {
               required
               disabled={isSubmitting}
               autoComplete="email"
-              className="focus-ring-dark w-full rounded-xl border border-[var(--border-dark)] bg-white/5 px-4 py-3 text-[15px] text-white placeholder:text-white/35 transition-colors duration-150 disabled:opacity-60 sm:flex-1"
+              className="focus-ring-dark w-full rounded-xl border border-[var(--border-dark)] bg-[var(--cp-bone)] px-4 py-3 text-[15px] text-[var(--cp-ink)] placeholder:text-[var(--cp-graphite)]/60 transition-colors duration-150 disabled:opacity-60 sm:flex-1"
             />
             <button
               type="submit"
@@ -100,7 +100,7 @@ export default function CTAWaitlist({ id, className = "" }: CTAWaitlistProps) {
             </button>
           </div>
           {error && (
-            <p className="mt-2 text-[13px] text-[#ff8f74]" role="alert">
+            <p className="mt-2 text-[13px] text-[#b3261e]" role="alert">
               {error}
             </p>
           )}

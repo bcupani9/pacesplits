@@ -41,14 +41,15 @@ export default function DistanceSection({
           >
             {distance.name}
           </h2>
-          <p className="mt-0.5 text-[13px] text-white/50">
+          <p className="mt-0.5 text-[13px]" style={{ color: "var(--cp-graphite)" }}>
             {distance.distanceKm} km · {allCombos.length} goal times
           </p>
         </div>
         {hubHref && (
           <Link
             href={hubHref}
-            className="focus-ring-dark group text-[13px] font-medium text-white/50 transition-colors duration-150 hover:text-white/80"
+            className="focus-ring-dark group text-[13px] font-medium transition-colors duration-150"
+            style={{ color: "var(--cp-graphite)" }}
           >
             Pace chart{" "}
             <span className="arrow-shift" aria-hidden="true">

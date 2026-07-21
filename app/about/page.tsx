@@ -30,10 +30,16 @@ export default function AboutPage() {
   return (
     <PageShell>
       <header className="mb-8 max-w-2xl sm:mb-10">
-        <h1 className="text-[34px] font-bold leading-tight tracking-tight text-white sm:text-[44px]">
+        <h1
+          className="text-[34px] font-bold leading-tight tracking-tight sm:text-[44px]"
+          style={{ color: "var(--cp-ink)", fontFamily: "var(--font-display)" }}
+        >
           About {BRAND_NAME}
         </h1>
-        <p className="mt-4 text-[16px] leading-relaxed text-white/60 sm:text-[18px]">
+        <p
+          className="mt-4 text-[16px] leading-relaxed sm:text-[18px]"
+          style={{ color: "var(--cp-graphite)" }}
+        >
           {BRAND_NAME} is a free running pace calculator built for runners who
           plan races by the clock. Pick your distance, pick your goal, and get
           the numbers you need to train and execute — then join the app waitlist
@@ -44,10 +50,16 @@ export default function AboutPage() {
       <div className="space-y-4">
         {features.map((feature) => (
           <article key={feature.title} className="card-dark p-5 sm:p-6">
-            <h2 className="text-[17px] font-semibold text-white sm:text-[19px]">
+            <h2
+              className="text-[17px] font-semibold sm:text-[19px]"
+              style={{ color: "var(--cp-ink)" }}
+            >
               {feature.title}
             </h2>
-            <p className="mt-2 text-[15px] leading-relaxed text-white/55">
+            <p
+              className="mt-2 text-[15px] leading-relaxed"
+              style={{ color: "var(--cp-graphite)" }}
+            >
               {feature.body}
             </p>
           </article>

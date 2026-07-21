@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import HeroAtmosphere from "@/components/HeroAtmosphere";
 import HeroStats, { type HeroStat } from "@/components/HeroStats";
 import PaceTable from "@/components/PaceTable";
 import Reveal from "@/components/Reveal";
@@ -22,68 +23,130 @@ export default function HomeHero() {
   ];
 
   return (
-    <section className="relative flex min-h-screen flex-col">
-      <div className="relative z-10 mx-auto flex w-full max-w-3xl flex-1 flex-col px-4 pb-16 pt-28 sm:px-6 sm:pb-20 sm:pt-32">
-        <div className="max-w-2xl">
-          <h1 className="text-[40px] font-bold leading-[1.08] tracking-tight text-white sm:text-[56px] lg:text-[72px]">
-            Find your exact{" "}
-            <span className="headline-badge">race pace</span> for any goal.
-          </h1>
-
-          <p className="mt-5 max-w-[500px] text-[16px] font-normal leading-relaxed text-white/60 sm:text-[18px]">
-            Mile-by-mile split tables for every race distance and goal time —
-            free, instant, and built for runners who plan by the clock. The{" "}
-            {BRAND_NAME} app, with personalized training plans around your pace,
-            is coming soon.
-          </p>
-
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Link
-              href="/calculators"
-              className="btn-hero-cta focus-ring-dark group inline-flex items-center gap-2"
+    <>
+      {/* Cinderpath hero band — the site's theme throughout, matching the
+          PaceSplits app. */}
+      <section
+        className="relative z-10"
+        style={{ background: "var(--cp-bone)", color: "var(--cp-ink)" }}
+      >
+        <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 pb-10 pt-24 sm:px-6 sm:pt-28 lg:flex-row lg:items-stretch lg:gap-0 lg:pb-6">
+          <div className="cp-dot-grid relative flex flex-1 flex-col justify-center py-6 lg:pr-10">
+            <p
+              className="mb-4 text-[12px] font-bold uppercase tracking-[0.16em]"
+              style={{
+                fontFamily: "var(--font-display)",
+                color: "var(--cp-cinder-deep)",
+              }}
             >
-              Browse calculators
-              <ArrowRight className="arrow-shift h-4 w-4" aria-hidden="true" />
-            </Link>
-            <Link
-              href="#waitlist"
-              className="focus-ring-dark inline-flex items-center rounded-full border border-[var(--border-dark)] bg-white/5 px-5 py-3 text-[15px] font-medium text-white/80 transition-all duration-150 ease-out hover:border-[#6b9fff]/50 hover:bg-white/10 hover:text-white active:scale-[0.98]"
+              Built for runners chasing a number
+            </p>
+
+            <h1
+              className="max-w-xl text-[38px] font-bold leading-[1.06] tracking-tight sm:text-[48px] lg:text-[54px]"
+              style={{ fontFamily: "var(--font-display)" }}
             >
-              Join the app waitlist
-            </Link>
+              Turn{" "}
+              <span className="cp-badge cp-badge-ink">
+                <ArrowRight className="h-[0.8em] w-[0.8em]" aria-hidden="true" />
+                Coach
+              </span>{" "}
+              check-ins into{" "}
+              <span className="cp-badge cp-badge-cinder">race day</span>{" "}
+              results.
+            </h1>
+
+            <p
+              className="mt-6 max-w-[480px] text-[16px] leading-relaxed sm:text-[17px]"
+              style={{ color: "var(--cp-graphite)" }}
+            >
+              Free pace splits, an AI coach that edits your actual training
+              week, and a plan that adapts every time your race date, goal, or
+              mileage changes.
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-5">
+              <Link href="/calculators" className="cp-cta focus-ring">
+                Get Bibbed
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+              <Link
+                href="#waitlist"
+                className="focus-ring text-[13.5px] font-bold"
+                style={{
+                  color: "var(--cp-ink)",
+                  borderBottom: "1.5px solid var(--cp-ink)",
+                  paddingBottom: "2px",
+                }}
+              >
+                Join the app waitlist
+              </Link>
+            </div>
+
+            <p
+              className="mt-8 text-[12px] font-semibold uppercase tracking-[0.08em]"
+              style={{ color: "var(--cp-graphite)" }}
+            >
+              Free calculator ·{" "}
+              <span style={{ color: "var(--cp-cinder-deep)" }}>No signup</span>{" "}
+              · Coach unlocks with Pro
+            </p>
           </div>
 
+          <div className="flex min-h-[320px] flex-1 lg:min-h-0">
+            <HeroAtmosphere
+              caption={
+                combo
+                  ? `${combo.distance.name} · ${combo.goalLabel}`
+                  : undefined
+              }
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Live product preview — same Cinderpath surface as the hero. */}
+      <section className="relative flex flex-col" style={{ background: "var(--cp-bone)" }}>
+        <div className="relative z-10 mx-auto flex w-full max-w-3xl flex-1 flex-col px-4 pb-16 pt-12 sm:px-6 sm:pb-20 sm:pt-16">
           <HeroStats stats={stats} />
 
-          <p className="mt-6 text-[13px] text-white/45">
-            Built by a sub-3:00 marathoner training for their next PR.
+          <p className="mt-6 text-[13px]" style={{ color: "var(--cp-graphite)" }}>
+            Built by a sub-3:00 marathoner training for their next PR. The{" "}
+            {BRAND_NAME} app, with personalized training plans around your
+            pace, is coming soon.
           </p>
-        </div>
 
-        {combo && (
-          <Reveal className="mt-12 sm:mt-16">
-            <div
-              className="card-dark card-accent-top overflow-hidden"
-              style={
-                { "--distance-gradient": "var(--brand-gradient)" } as React.CSSProperties
-              }
-            >
-              <div className="border-b border-[var(--border-dark)] px-5 py-4 sm:px-6">
-                <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-white/45">
-                  Live preview
-                </p>
-                <Link
-                  href={`/pace-calculator/${combo.slug}`}
-                  className="focus-ring-dark mt-1 inline-block text-[17px] font-semibold text-white transition-colors duration-150 hover:text-[#6b9fff]"
-                >
-                  {combo.distance.name} · {combo.goalLabel}
-                </Link>
+          {combo && (
+            <Reveal className="mt-10 sm:mt-12">
+              <div
+                className="card-dark card-accent-top overflow-hidden"
+                style={
+                  {
+                    "--distance-gradient": "var(--brand-gradient)",
+                  } as React.CSSProperties
+                }
+              >
+                <div className="border-b border-[var(--border-dark)] px-5 py-4 sm:px-6">
+                  <p
+                    className="text-[11px] font-medium uppercase tracking-[0.08em]"
+                    style={{ color: "var(--cp-graphite)" }}
+                  >
+                    Live preview
+                  </p>
+                  <Link
+                    href={`/pace-calculator/${combo.slug}`}
+                    className="focus-ring-dark mt-1 inline-block text-[17px] font-semibold transition-colors duration-150"
+                    style={{ color: "var(--cp-ink)" }}
+                  >
+                    {combo.distance.name} · {combo.goalLabel}
+                  </Link>
+                </div>
+                <PaceTable splits={previewSplits} limit={6} embedded />
               </div>
-              <PaceTable splits={previewSplits} limit={6} embedded />
-            </div>
-          </Reveal>
-        )}
-      </div>
-    </section>
+            </Reveal>
+          )}
+        </div>
+      </section>
+    </>
   );
 }

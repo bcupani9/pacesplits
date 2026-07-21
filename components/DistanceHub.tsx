@@ -46,7 +46,7 @@ export default function DistanceHub({ distanceId }: { distanceId: DistanceId }) 
     <PageShell>
       <Link
         href="/calculators"
-        className="focus-ring-dark group mb-5 inline-block text-[15px] text-white/50 transition-colors duration-150 ease-in-out hover:text-white/80"
+        className="focus-ring-dark group mb-5 inline-block text-[15px] text-[var(--cp-graphite)] transition-colors duration-150 ease-in-out hover:text-[var(--cp-ink)]"
       >
         <span className="arrow-shift-back" aria-hidden="true">
           ‹
@@ -55,13 +55,17 @@ export default function DistanceHub({ distanceId }: { distanceId: DistanceId }) 
       </Link>
 
       <header className="mb-8 max-w-2xl sm:mb-10">
-        <h1 className="text-[34px] font-bold leading-tight tracking-tight text-white sm:text-[44px]">
+        <h1
+          className="text-[34px] font-bold leading-tight tracking-tight sm:text-[44px]"
+          style={{ color: "var(--cp-ink)", fontFamily: "var(--font-display)" }}
+        >
           {copy.h1}
         </h1>
         {copy.intro.map((paragraph) => (
           <p
             key={paragraph.slice(0, 32)}
-            className="mt-4 text-[16px] leading-relaxed text-white/60 sm:text-[17px]"
+            className="mt-4 text-[16px] leading-relaxed sm:text-[17px]"
+            style={{ color: "var(--cp-graphite)" }}
           >
             {paragraph}
           </p>
@@ -98,11 +102,15 @@ export default function DistanceHub({ distanceId }: { distanceId: DistanceId }) 
         <section aria-labelledby="pace-chart-heading">
           <h2
             id="pace-chart-heading"
-            className="text-[24px] font-semibold leading-tight tracking-tight text-white sm:text-[28px]"
+            className="text-[24px] font-semibold leading-tight tracking-tight sm:text-[28px]"
+            style={{ color: "var(--cp-ink)", fontFamily: "var(--font-display)" }}
           >
             {copy.chartHeading}
           </h2>
-          <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-white/55">
+          <p
+            className="mt-2 max-w-2xl text-[15px] leading-relaxed"
+            style={{ color: "var(--cp-graphite)" }}
+          >
             {copy.chartIntro}
           </p>
 
@@ -114,13 +122,13 @@ export default function DistanceHub({ distanceId }: { distanceId: DistanceId }) 
               <table className="w-full text-left">
                 <thead>
                   <tr className="border-b border-[var(--border-dark)]">
-                    <th className="px-5 py-3 text-[11px] font-medium uppercase tracking-[0.08em] text-white/45">
+                    <th className="px-5 py-3 text-[11px] font-medium uppercase tracking-[0.08em] text-[var(--cp-graphite)]">
                       Goal time
                     </th>
-                    <th className="px-5 py-3 text-[11px] font-medium uppercase tracking-[0.08em] text-white/45">
+                    <th className="px-5 py-3 text-[11px] font-medium uppercase tracking-[0.08em] text-[var(--cp-graphite)]">
                       Pace per mile
                     </th>
-                    <th className="px-5 py-3 text-right text-[11px] font-medium uppercase tracking-[0.08em] text-white/45">
+                    <th className="px-5 py-3 text-right text-[11px] font-medium uppercase tracking-[0.08em] text-[var(--cp-graphite)]">
                       Pace per km
                     </th>
                   </tr>
@@ -134,7 +142,7 @@ export default function DistanceHub({ distanceId }: { distanceId: DistanceId }) 
                     return (
                       <tr
                         key={combo.slug}
-                        className={`transition-colors duration-150 hover:bg-white/5${
+                        className={`transition-colors duration-150 hover:bg-[var(--cp-ink)]/[0.04]${
                           index < combos.length - 1
                             ? " border-b border-[var(--border-dark)]"
                             : ""
@@ -143,15 +151,15 @@ export default function DistanceHub({ distanceId }: { distanceId: DistanceId }) 
                         <td className="px-5 py-2.5">
                           <Link
                             href={`/pace-calculator/${combo.slug}`}
-                            className="focus-ring-dark text-[14px] font-medium text-white transition-colors duration-150 hover:text-[var(--distance-color)] sm:text-[15px]"
+                            className="focus-ring-dark text-[14px] font-medium text-[var(--cp-ink)] transition-colors duration-150 hover:text-[var(--distance-color)] sm:text-[15px]"
                           >
                             {combo.goalLabel}
                           </Link>
                         </td>
-                        <td className="px-5 py-2.5 text-[14px] tabular-nums text-white/70">
+                        <td className="px-5 py-2.5 text-[14px] tabular-nums text-[var(--cp-graphite)]">
                           {formatPace(pace.pacePerMileSeconds)} /mi
                         </td>
-                        <td className="px-5 py-2.5 text-right text-[14px] tabular-nums text-white/70">
+                        <td className="px-5 py-2.5 text-right text-[14px] tabular-nums text-[var(--cp-graphite)]">
                           {formatPace(pace.pacePerKmSeconds)} /km
                         </td>
                       </tr>
@@ -169,7 +177,7 @@ export default function DistanceHub({ distanceId }: { distanceId: DistanceId }) 
           items={copy.faq}
           title={`${distance.name} pacing FAQ`}
           className="mt-10 sm:mt-12"
-          headingClassName="text-[24px] font-semibold leading-tight tracking-tight text-white sm:text-[28px]"
+          headingClassName="text-[24px] font-semibold leading-tight tracking-tight sm:text-[28px]"
         />
       </Reveal>
 
@@ -177,13 +185,16 @@ export default function DistanceHub({ distanceId }: { distanceId: DistanceId }) 
         <CTAWaitlist className="mt-8 sm:mt-10" />
       </Reveal>
 
-      <p className="mt-8 text-[14px] leading-relaxed text-white/50">
+      <p
+        className="mt-8 text-[14px] leading-relaxed"
+        style={{ color: "var(--cp-graphite)" }}
+      >
         More pace calculators:{" "}
         {otherHubs.map((d, index) => (
           <span key={d.id}>
             <Link
               href={`/${HUB_SLUGS[d.id]}`}
-              className="focus-ring-dark text-[#6b9fff] transition-colors duration-150 hover:text-[#8bb3ff]"
+              className="focus-ring-dark text-[var(--cp-cinder)] transition-colors duration-150 hover:text-[var(--cp-cinder-deep)]"
             >
               {d.name} pace calculator
             </Link>

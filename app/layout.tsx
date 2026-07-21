@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Oswald } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import FloatingNav from "@/components/FloatingNav";
 import { BRAND_NAME } from "@/lib/brand";
@@ -11,6 +11,16 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+// Condensed, high-impact display face for Cinderpath headings site-wide —
+// exposed as a CSS variable and applied per-heading, so body copy stays on
+// Inter throughout.
+const oswald = Oswald({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-display",
   display: "swap",
 });
 
@@ -88,7 +98,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${inter.variable} ${oswald.variable}`}>
       <body className={`${inter.className} min-h-screen antialiased`}>
         <div className="site-atmospheric fixed inset-0 -z-20" aria-hidden="true" />
         <div className="site-grain fixed inset-0 -z-10" aria-hidden="true" />
@@ -102,7 +112,7 @@ export default function RootLayout({
         <div className="relative flex min-h-screen flex-col">
           <main className="flex-1">{children}</main>
 
-          <footer className="relative border-t border-white/10">
+          <footer className="relative border-t border-[var(--cp-line)]">
             <div className="mx-auto max-w-3xl px-4 py-5 sm:px-6">
               <nav
                 aria-label="Pace calculators"
@@ -112,29 +122,29 @@ export default function RootLayout({
                   <a
                     key={distance.id}
                     href={`/${HUB_SLUGS[distance.id]}`}
-                    className="focus-ring-dark text-[13px] text-white/50 transition-colors duration-150 hover:text-white/80"
+                    className="focus-ring-dark text-[13px] text-[var(--cp-graphite)] transition-colors duration-150 hover:text-[var(--cp-ink)]"
                   >
                     {distance.name} pace calculator
                   </a>
                 ))}
                 <a
                   href="/calculators"
-                  className="focus-ring-dark text-[13px] text-white/50 transition-colors duration-150 hover:text-white/80"
+                  className="focus-ring-dark text-[13px] text-[var(--cp-graphite)] transition-colors duration-150 hover:text-[var(--cp-ink)]"
                 >
                   All calculators
                 </a>
               </nav>
-              <p className="text-[13px] text-white/50">
+              <p className="text-[13px] text-[var(--cp-graphite)]">
                 The {BRAND_NAME} app — training plans built around your race pace
                 — is coming soon.{" "}
                 <a
                   href="/#waitlist"
-                  className="focus-ring-dark text-[#6b9fff] transition-colors duration-150 hover:text-[#8bb3ff]"
+                  className="focus-ring-dark text-[var(--cp-cinder)] transition-colors duration-150 hover:text-[var(--cp-cinder-deep)]"
                 >
                   Join the waitlist
                 </a>
               </p>
-              <p className="mt-2 text-[13px] text-white/40">
+              <p className="mt-2 text-[13px] text-[var(--cp-graphite)]/70">
                 © {new Date().getFullYear()} {BRAND_NAME}
               </p>
             </div>

@@ -42,7 +42,7 @@ export default async function Icon() {
             justifyContent: "center",
             borderRadius: 56,
             background: `linear-gradient(135deg, ${BRAND_COLORS.accent} 0%, ${BRAND_COLORS.accentViolet} 100%)`,
-            boxShadow: "0 12px 48px rgba(47, 111, 237, 0.55)",
+            boxShadow: "0 12px 48px rgba(193, 64, 31, 0.55)",
           }}
         >
           <div

@@ -52,7 +52,10 @@ export default function HeroStats({ stats }: { stats: HeroStat[] }) {
       {stats.map((stat) => (
         <div key={stat.label}>
           <dt className="sr-only">{stat.label}</dt>
-          <dd className="text-[28px] font-semibold leading-none text-white sm:text-[32px]">
+          <dd
+            className="text-[28px] font-semibold leading-none sm:text-[32px]"
+            style={{ color: "var(--cp-ink)" }}
+          >
             {typeof stat.value === "number" ? (
               stat.badge ? (
                 <span className="headline-badge">
@@ -70,7 +73,10 @@ export default function HeroStats({ stats }: { stats: HeroStat[] }) {
               </span>
             )}
           </dd>
-          <dd className="mt-1.5 text-[13px] font-medium uppercase tracking-[0.06em] text-white/45">
+          <dd
+            className="mt-1.5 text-[13px] font-medium uppercase tracking-[0.06em]"
+            style={{ color: "var(--cp-graphite)" }}
+          >
             {stat.label}
           </dd>
         </div>

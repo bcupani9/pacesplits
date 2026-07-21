@@ -80,23 +80,29 @@ export default function CalculatorClient({
         className="card-dark card-accent-top hero-wash overflow-hidden px-5 py-8 text-center sm:px-8 sm:py-10"
         style={distanceStyle}
       >
-        <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-white/45">
+        <p
+          className="text-[11px] font-medium uppercase tracking-[0.08em]"
+          style={{ color: "var(--cp-graphite)" }}
+        >
           {isNegative ? "Average pace" : "Required pace"}
         </p>
         <p
           className="mt-2 text-[48px] font-semibold leading-none tracking-tight sm:text-[64px]"
-          style={{ color: theme.color }}
+          style={{ color: theme.color, fontFamily: "var(--font-display)" }}
         >
           {pacePerMile}
-          <span className="ml-1 text-[24px] font-medium text-white/50 sm:text-[28px]">
+          <span
+            className="ml-1 text-[24px] font-medium sm:text-[28px]"
+            style={{ color: "var(--cp-graphite)" }}
+          >
             /mi
           </span>
         </p>
-        <p className="mt-2 text-[15px] text-white/55">
+        <p className="mt-2 text-[15px]" style={{ color: "var(--cp-graphite)" }}>
           {pacePerKm} per km
         </p>
         {isNegative && startPace && finishPace && (
-          <p className="mt-2 text-[13px] text-white/45">
+          <p className="mt-2 text-[13px]" style={{ color: "var(--cp-graphite)" }}>
             Starts ~{startPace} → finishes ~{finishPace}
           </p>
         )}
@@ -109,7 +115,10 @@ export default function CalculatorClient({
       </div>
 
       <div className="mt-5">
-        <h2 className="mb-3 px-1 text-[13px] font-medium uppercase tracking-[0.06em] text-white/45">
+        <h2
+          className="mb-3 px-1 text-[13px] font-medium uppercase tracking-[0.06em]"
+          style={{ color: "var(--cp-graphite)" }}
+        >
           Mile-by-mile splits
         </h2>
         <PaceTable
@@ -120,7 +129,10 @@ export default function CalculatorClient({
       </div>
 
       {contextParagraphs && contextParagraphs.length > 0 && (
-        <p className="mt-5 px-1 text-[15px] leading-[1.65] text-white/55">
+        <p
+          className="mt-5 px-1 text-[15px] leading-[1.65]"
+          style={{ color: "var(--cp-graphite)" }}
+        >
           {contextParagraphs.join(" ")}
         </p>
       )}

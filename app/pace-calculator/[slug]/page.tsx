@@ -61,15 +61,18 @@ export default function PaceCalculatorPage({ params }: PageProps) {
     return (
       <PageShell>
         <div className="card-dark px-5 py-10 text-center sm:px-8">
-          <h1 className="text-[22px] font-semibold text-white">
+          <h1
+            className="text-[22px] font-semibold"
+            style={{ color: "var(--cp-ink)" }}
+          >
             Calculator not found
           </h1>
-          <p className="mt-2 text-[15px] text-white/55">
+          <p className="mt-2 text-[15px]" style={{ color: "var(--cp-graphite)" }}>
             We couldn&apos;t find a pace calculator for that goal time.
           </p>
           <Link
             href="/calculators"
-            className="focus-ring-dark group mt-6 inline-block text-[15px] font-medium text-[#6b9fff] transition-colors duration-150 hover:text-[#8bb3ff]"
+            className="focus-ring-dark group mt-6 inline-block text-[15px] font-medium text-[var(--cp-cinder)] transition-colors duration-150 hover:text-[var(--cp-cinder-deep)]"
           >
             <span className="arrow-shift-back" aria-hidden="true">
               ‹
@@ -99,7 +102,8 @@ export default function PaceCalculatorPage({ params }: PageProps) {
     <PageShell>
       <Link
         href={`/${hub.slug}`}
-        className="focus-ring-dark group mb-5 inline-block text-[15px] text-white/50 transition-colors duration-150 ease-in-out hover:text-white/80"
+        className="focus-ring-dark group mb-5 inline-block text-[15px] transition-colors duration-150 ease-in-out"
+        style={{ color: "var(--cp-graphite)" }}
       >
         <span className="arrow-shift-back" aria-hidden="true">
           ‹
@@ -130,7 +134,7 @@ export default function PaceCalculatorPage({ params }: PageProps) {
           items={faqItems}
           title={`${combo.goalLabel} ${combo.distance.name} FAQ`}
           className="mt-10"
-          headingClassName="text-[22px] font-semibold leading-tight tracking-tight text-white sm:text-[24px]"
+          headingClassName="text-[22px] font-semibold leading-tight tracking-tight text-[var(--cp-ink)] sm:text-[24px]"
         />
       </Reveal>
 

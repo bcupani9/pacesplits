@@ -82,7 +82,7 @@ export default async function OpenGraphImage() {
                 display: "flex",
                 alignItems: "center",
                 fontFamily: INTER_FONT_FAMILY,
-                background: "rgba(47, 111, 237, 0.2)",
+                background: "rgba(193, 64, 31, 0.2)",
                 color: BRAND_COLORS.accentLight,
                 borderRadius: 999,
                 padding: "6px 22px",

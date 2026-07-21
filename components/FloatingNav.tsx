@@ -20,7 +20,7 @@ export default function FloatingNav() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="focus-ring-dark rounded-full px-3 py-1.5 text-[13px] font-medium text-white/75 transition-colors duration-150 ease-in-out hover:bg-white/10 hover:text-white sm:px-4 sm:text-[14px]"
+                className="focus-ring-dark rounded-full px-3 py-1.5 text-[13px] font-medium text-[#1e1a16]/70 transition-colors duration-150 ease-in-out hover:bg-[#1e1a16]/8 hover:text-[#1e1a16] sm:px-4 sm:text-[14px]"
               >
                 {link.label}
               </Link>

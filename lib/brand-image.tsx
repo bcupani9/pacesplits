@@ -1,12 +1,12 @@
 export const BRAND_COLORS = {
-  bg: "#0A0E14",
-  bgDeep: "#05070A",
-  accent: "#2F6FED",
-  accentLight: "#6B9FFF",
-  accentViolet: "#7C3AED",
-  accentLavender: "#A78BFA",
-  warm: "#FF6B4A",
-  white: "#FFFFFF",
+  bg: "#161B22",
+  bgDeep: "#0B0E13",
+  accent: "#C1401F",
+  accentLight: "#E8703D",
+  accentViolet: "#E7A93A",
+  accentLavender: "#F0C675",
+  warm: "#E7A93A",
+  white: "#E6E1D2",
 } as const;
 
 export const HERO_BACKGROUND = `linear-gradient(180deg, ${BRAND_COLORS.bg} 0%, ${BRAND_COLORS.bgDeep} 100%)`;
@@ -55,7 +55,7 @@ export function AtmosphericBackground({
           width: width * 0.72,
           height: height * 0.72,
           borderRadius: "50%",
-          background: "rgba(47, 111, 237, 0.32)",
+          background: "rgba(193, 64, 31, 0.32)",
           filter: "blur(90px)",
         }}
       />
@@ -67,7 +67,7 @@ export function AtmosphericBackground({
           width: width * 0.58,
           height: height * 0.58,
           borderRadius: "50%",
-          background: "rgba(255, 107, 74, 0.22)",
+          background: "rgba(231, 169, 58, 0.22)",
           filter: "blur(80px)",
         }}
       />
@@ -79,7 +79,7 @@ export function AtmosphericBackground({
           width: width * 0.5,
           height: height * 0.5,
           borderRadius: "50%",
-          background: "rgba(47, 111, 237, 0.12)",
+          background: "rgba(193, 64, 31, 0.14)",
           filter: "blur(70px)",
         }}
       />

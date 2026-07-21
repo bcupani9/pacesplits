@@ -14,15 +14,24 @@ export default function PrivacyPage() {
   return (
     <PageShell>
       <header className="mb-8 max-w-2xl sm:mb-10">
-        <h1 className="text-[34px] font-bold leading-tight tracking-tight text-white sm:text-[44px]">
+        <h1
+          className="text-[34px] font-bold leading-tight tracking-tight sm:text-[44px]"
+          style={{ color: "var(--cp-ink)", fontFamily: "var(--font-display)" }}
+        >
           Privacy Policy
         </h1>
-        <p className="mt-4 text-[15px] leading-relaxed text-white/50">
+        <p
+          className="mt-4 text-[15px] leading-relaxed"
+          style={{ color: "var(--cp-graphite)" }}
+        >
           Effective {EFFECTIVE_DATE}
         </p>
       </header>
 
-      <div className="space-y-8 text-[15px] leading-relaxed text-white/70 sm:text-[16px]">
+      <div
+        className="space-y-8 text-[15px] leading-relaxed sm:text-[16px]"
+        style={{ color: "var(--cp-graphite)" }}
+      >
         <section>
           <p>
             This policy covers the {BRAND_NAME} website and the {BRAND_NAME}{" "}
@@ -33,12 +42,18 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="text-[19px] font-semibold text-white sm:text-[21px]">
+          <h2
+            className="text-[19px] font-semibold sm:text-[21px]"
+            style={{ color: "var(--cp-ink)" }}
+          >
             What we collect
           </h2>
           <div className="mt-3 space-y-4">
             <div>
-              <h3 className="text-[16px] font-semibold text-white/90">
+              <h3
+                className="text-[16px] font-semibold"
+                style={{ color: "var(--cp-ink)" }}
+              >
                 Identity (optional)
               </h3>
               <p className="mt-1">
@@ -48,7 +63,10 @@ export default function PrivacyPage() {
               </p>
             </div>
             <div>
-              <h3 className="text-[16px] font-semibold text-white/90">
+              <h3
+                className="text-[16px] font-semibold"
+                style={{ color: "var(--cp-ink)" }}
+              >
                 Training data
               </h3>
               <p className="mt-1">
@@ -59,7 +77,10 @@ export default function PrivacyPage() {
               </p>
             </div>
             <div>
-              <h3 className="text-[16px] font-semibold text-white/90">
+              <h3
+                className="text-[16px] font-semibold"
+                style={{ color: "var(--cp-ink)" }}
+              >
                 Injury check-in
               </h3>
               <p className="mt-1">
@@ -70,21 +91,28 @@ export default function PrivacyPage() {
               </p>
             </div>
             <div>
-              <h3 className="text-[16px] font-semibold text-white/90">
+              <h3
+                className="text-[16px] font-semibold"
+                style={{ color: "var(--cp-ink)" }}
+              >
                 Coach conversations
               </h3>
               <p className="mt-1">
                 Messages you send to Coach, along with relevant profile
                 context (your goal race, experience, and current week&rsquo;s
                 plan), are sent to Anthropic to generate a response. See{" "}
-                <span className="text-white/90">Third parties</span> below.
+                <span style={{ color: "var(--cp-ink)" }}>Third parties</span>{" "}
+                below.
               </p>
             </div>
           </div>
         </section>
 
         <section>
-          <h2 className="text-[19px] font-semibold text-white sm:text-[21px]">
+          <h2
+            className="text-[19px] font-semibold sm:text-[21px]"
+            style={{ color: "var(--cp-ink)" }}
+          >
             Third parties
           </h2>
           <p className="mt-3">
@@ -94,7 +122,10 @@ export default function PrivacyPage() {
           </p>
           <div className="mt-3 space-y-4">
             <div>
-              <h3 className="text-[16px] font-semibold text-white/90">
+              <h3
+                className="text-[16px] font-semibold"
+                style={{ color: "var(--cp-ink)" }}
+              >
                 Apple
               </h3>
               <p className="mt-1">
@@ -102,7 +133,11 @@ export default function PrivacyPage() {
                 the App Store. See{" "}
                 <a
                   href="https://www.apple.com/legal/privacy/"
-                  className="underline decoration-white/30 underline-offset-2 hover:decoration-white/60"
+                  className="underline underline-offset-2 transition-colors duration-150"
+                  style={{
+                    textDecorationColor: "var(--cp-cinder)",
+                    color: "var(--cp-ink)",
+                  }}
                 >
                   Apple&rsquo;s privacy policy
                 </a>
@@ -110,7 +145,10 @@ export default function PrivacyPage() {
               </p>
             </div>
             <div>
-              <h3 className="text-[16px] font-semibold text-white/90">
+              <h3
+                className="text-[16px] font-semibold"
+                style={{ color: "var(--cp-ink)" }}
+              >
                 Google
               </h3>
               <p className="mt-1">
@@ -118,7 +156,11 @@ export default function PrivacyPage() {
                 profile photo if you choose that option. See{" "}
                 <a
                   href="https://policies.google.com/privacy"
-                  className="underline decoration-white/30 underline-offset-2 hover:decoration-white/60"
+                  className="underline underline-offset-2 transition-colors duration-150"
+                  style={{
+                    textDecorationColor: "var(--cp-cinder)",
+                    color: "var(--cp-ink)",
+                  }}
                 >
                   Google&rsquo;s privacy policy
                 </a>
@@ -126,7 +168,10 @@ export default function PrivacyPage() {
               </p>
             </div>
             <div>
-              <h3 className="text-[16px] font-semibold text-white/90">
+              <h3
+                className="text-[16px] font-semibold"
+                style={{ color: "var(--cp-ink)" }}
+              >
                 Anthropic
               </h3>
               <p className="mt-1">
@@ -135,7 +180,11 @@ export default function PrivacyPage() {
                 See{" "}
                 <a
                   href="https://www.anthropic.com/legal/privacy"
-                  className="underline decoration-white/30 underline-offset-2 hover:decoration-white/60"
+                  className="underline underline-offset-2 transition-colors duration-150"
+                  style={{
+                    textDecorationColor: "var(--cp-cinder)",
+                    color: "var(--cp-ink)",
+                  }}
                 >
                   Anthropic&rsquo;s privacy policy
                 </a>
@@ -143,7 +192,10 @@ export default function PrivacyPage() {
               </p>
             </div>
             <div>
-              <h3 className="text-[16px] font-semibold text-white/90">
+              <h3
+                className="text-[16px] font-semibold"
+                style={{ color: "var(--cp-ink)" }}
+              >
                 Intervals.icu
               </h3>
               <p className="mt-1">
@@ -155,7 +207,11 @@ export default function PrivacyPage() {
                 See{" "}
                 <a
                   href="https://intervals.icu/privacy"
-                  className="underline decoration-white/30 underline-offset-2 hover:decoration-white/60"
+                  className="underline underline-offset-2 transition-colors duration-150"
+                  style={{
+                    textDecorationColor: "var(--cp-cinder)",
+                    color: "var(--cp-ink)",
+                  }}
                 >
                   Intervals.icu&rsquo;s privacy policy
                 </a>
@@ -163,7 +219,10 @@ export default function PrivacyPage() {
               </p>
             </div>
             <div>
-              <h3 className="text-[16px] font-semibold text-white/90">
+              <h3
+                className="text-[16px] font-semibold"
+                style={{ color: "var(--cp-ink)" }}
+              >
                 Superwall
               </h3>
               <p className="mt-1">
@@ -171,7 +230,11 @@ export default function PrivacyPage() {
                 Pro. See{" "}
                 <a
                   href="https://superwall.com/privacy"
-                  className="underline decoration-white/30 underline-offset-2 hover:decoration-white/60"
+                  className="underline underline-offset-2 transition-colors duration-150"
+                  style={{
+                    textDecorationColor: "var(--cp-cinder)",
+                    color: "var(--cp-ink)",
+                  }}
                 >
                   Superwall&rsquo;s privacy policy
                 </a>
@@ -182,7 +245,10 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="text-[19px] font-semibold text-white sm:text-[21px]">
+          <h2
+            className="text-[19px] font-semibold sm:text-[21px]"
+            style={{ color: "var(--cp-ink)" }}
+          >
             Where your data lives
           </h2>
           <p className="mt-3">
@@ -196,7 +262,10 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="text-[19px] font-semibold text-white sm:text-[21px]">
+          <h2
+            className="text-[19px] font-semibold sm:text-[21px]"
+            style={{ color: "var(--cp-ink)" }}
+          >
             Notifications
           </h2>
           <p className="mt-3">
@@ -207,7 +276,10 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="text-[19px] font-semibold text-white sm:text-[21px]">
+          <h2
+            className="text-[19px] font-semibold sm:text-[21px]"
+            style={{ color: "var(--cp-ink)" }}
+          >
             Your choices
           </h2>
           <p className="mt-3">
@@ -219,7 +291,10 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="text-[19px] font-semibold text-white sm:text-[21px]">
+          <h2
+            className="text-[19px] font-semibold sm:text-[21px]"
+            style={{ color: "var(--cp-ink)" }}
+          >
             Children
           </h2>
           <p className="mt-3">
@@ -229,7 +304,10 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="text-[19px] font-semibold text-white sm:text-[21px]">
+          <h2
+            className="text-[19px] font-semibold sm:text-[21px]"
+            style={{ color: "var(--cp-ink)" }}
+          >
             Changes to this policy
           </h2>
           <p className="mt-3">
@@ -240,14 +318,21 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="text-[19px] font-semibold text-white sm:text-[21px]">
+          <h2
+            className="text-[19px] font-semibold sm:text-[21px]"
+            style={{ color: "var(--cp-ink)" }}
+          >
             Contact
           </h2>
           <p className="mt-3">
             Questions about this policy or your data:{" "}
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="underline decoration-white/30 underline-offset-2 hover:decoration-white/60"
+              className="underline underline-offset-2 transition-colors duration-150"
+              style={{
+                textDecorationColor: "var(--cp-cinder)",
+                color: "var(--cp-ink)",
+              }}
             >
               {CONTACT_EMAIL}
             </a>

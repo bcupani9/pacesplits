@@ -9,23 +9,23 @@ export interface DistanceTheme {
 export const DISTANCE_THEMES: Record<DistanceId, DistanceTheme> = {
   "5k": {
     gradient: "var(--5k-gradient)",
-    color: "#10b981",
-    glow: "rgba(16, 185, 129, 0.35)",
+    color: "#e7a93a",
+    glow: "rgba(231, 169, 58, 0.35)",
   },
   "10k": {
     gradient: "var(--10k-gradient)",
-    color: "#2f6fed",
-    glow: "rgba(47, 111, 237, 0.35)",
+    color: "#d9832f",
+    glow: "rgba(217, 131, 47, 0.35)",
   },
   "half-marathon": {
     gradient: "var(--half-gradient)",
-    color: "#7c3aed",
-    glow: "rgba(124, 58, 237, 0.35)",
+    color: "#c1401f",
+    glow: "rgba(193, 64, 31, 0.35)",
   },
   marathon: {
     gradient: "var(--marathon-gradient)",
-    color: "#ef4444",
-    glow: "rgba(239, 68, 68, 0.35)",
+    color: "#9e3018",
+    glow: "rgba(158, 48, 24, 0.35)",
   },
 };
 

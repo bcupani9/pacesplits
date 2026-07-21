@@ -19,13 +19,13 @@ export default function PaceTable({
     : "card-dark overflow-hidden";
 
   const rowBorder = "border-[var(--border-dark)]";
-  const labelClass = "text-[15px] text-white/50";
-  const paceClass = "text-[13px] tabular-nums text-white/40";
+  const labelClass = "text-[15px] text-[#55503f]";
+  const paceClass = "text-[13px] tabular-nums text-[#55503f]/80";
   const cumulativeClass =
-    "min-w-[4.5rem] text-right text-[15px] font-semibold tabular-nums text-white";
-  const variablePaceClass = "text-[11px] tabular-nums text-white/35";
+    "min-w-[4.5rem] text-right text-[15px] font-semibold tabular-nums text-[#1e1a16]";
+  const variablePaceClass = "text-[11px] tabular-nums text-[#55503f]/70";
   const footerClass =
-    "border-t border-[var(--border-dark)] bg-white/5 px-5 py-3 text-center text-[13px] text-white/45";
+    "border-t border-[var(--border-dark)] bg-[#1e1a16]/[0.03] px-5 py-3 text-center text-[13px] text-[#55503f]";
 
   return (
     <div className={wrapperClass}>

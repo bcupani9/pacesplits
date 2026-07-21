@@ -23,10 +23,16 @@ export default function CalculatorsPage() {
   return (
     <PageShell>
       <header className="mb-8 sm:mb-10">
-        <h1 className="text-[34px] font-bold leading-tight tracking-tight text-white sm:text-[44px]">
+        <h1
+          className="text-[34px] font-bold leading-tight tracking-tight sm:text-[44px]"
+          style={{ color: "var(--cp-ink)", fontFamily: "var(--font-display)" }}
+        >
           Calculators
         </h1>
-        <p className="mt-3 max-w-lg text-[16px] leading-relaxed text-white/60 sm:text-[17px]">
+        <p
+          className="mt-3 max-w-lg text-[16px] leading-relaxed sm:text-[17px]"
+          style={{ color: "var(--cp-graphite)" }}
+        >
           Pick a distance and goal time for mile-by-mile splits.{" "}
           {ALL_COMBOS.length} calculators available. Want more than splits? The{" "}
           {BRAND_NAME} app is coming soon — join the waitlist below.
